@@ -2,11 +2,15 @@ import "./App.css";
 
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
+import SharedLayout from "./components/layout/SharedLayout";
+
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<div>Hello</div>} />
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<div>Hello</div>} />
+        </Route>
       </Routes>
     </Router>
   );
