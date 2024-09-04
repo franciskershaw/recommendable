@@ -1,12 +1,18 @@
 import { Outlet } from "react-router-dom";
 
+import Sidebar from "../ui/Sidebar/Sidebar";
+
 const SharedLayout = () => {
   return (
-    <>
-      <main className="bg-secondary">
+    <div className="flex h-screen">
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main content area */}
+      <main className="flex-1 bg-secondary p-4">
         <Outlet />
       </main>
-    </>
+    </div>
   );
 };
 
