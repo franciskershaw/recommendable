@@ -4,12 +4,9 @@ import Sidebar from "../ui/Sidebar/Sidebar";
 
 const SharedLayout = () => {
   return (
-    <div className="flex h-screen">
-      {/* Sidebar */}
+    <div className="relative min-h-screen">
       <Sidebar />
-
-      {/* Main content area */}
-      <main className="flex-1 bg-secondary p-4">
+      <main className="ml-20 p-4 transition-all duration-500">
         <Outlet />
       </main>
     </div>
