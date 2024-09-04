@@ -22,7 +22,7 @@ const Sidebar = () => {
     <div
       className={`${
         isExpanded ? "w-64" : "w-20"
-      } h-full bg-slate-700 flex flex-col py-8 transition-all duration-300 relative`}
+      } h-full bg-slate-700 flex flex-col py-8 transition-all duration-500 relative`}
     >
       {/* Top Section: Settings + Auth */}
       <div className="flex flex-col items-center space-y-8">
@@ -39,8 +39,6 @@ const Sidebar = () => {
           label="Log In"
           isExpanded={isExpanded}
         />
-        {/* If user is logged in, replace with FaSignOutAlt */}
-        {/* <SidebarIcon icon={<FaSignOutAlt />} label="Log Out" isExpanded={isExpanded} /> */}
       </div>
 
       {/* Middle Section: Main Categories */}
@@ -57,7 +55,7 @@ const Sidebar = () => {
 
       {/* Bottom Section: Toggle button */}
       <button
-        className={`absolute bottom-4 right-[-15px] transform bg-gray-600 p-2 rounded-full focus:outline-none transition-transform duration-300`}
+        className={`absolute bottom-4 right-[-15px] transform bg-gray-600 p-2 rounded-full focus:outline-none transition-transform duration-500`}
         onClick={toggleSidebar}
       >
         {isExpanded ? (
@@ -73,17 +71,29 @@ const Sidebar = () => {
 // Component for individual icons
 const SidebarIcon = ({
   icon,
-  //   label,
-  //   isExpanded,
+  label,
+  isExpanded,
 }: {
   icon: React.ReactNode;
   label: string;
   isExpanded: boolean;
 }) => {
   return (
-    <div className="flex items-center space-x-2">
-      <span className="text-white text-xl">{icon}</span>
-      {/* {isExpanded && <span className="text-white">{label}</span>} */}
+    <div className="flex items-center w-full">
+      {/* Icon */}
+      <div className="flex-shrink-0 w-20 flex justify-center">
+        <span className="text-white text-xl">{icon}</span>
+      </div>
+
+      {/* Label */}
+      <span
+        className={`${
+          isExpanded ? "opacity-100" : "opacity-0"
+        } text-white text-sm whitespace-nowrap transition-opacity duration-300 ml-2`}
+        style={{ width: isExpanded ? "auto" : "0px" }}
+      >
+        {label}
+      </span>
     </div>
   );
 };
