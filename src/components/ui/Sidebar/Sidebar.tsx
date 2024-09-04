@@ -21,7 +21,7 @@ const Sidebar = () => {
   return (
     <div
       className={`${
-        isExpanded ? "w-64" : "w-20"
+        isExpanded ? "w-44" : "w-20"
       } h-full bg-slate-700 fixed left-0 top-0 flex flex-col py-8 transition-all duration-500 z-50`}
     >
       <div className="flex flex-col items-center space-y-8">
@@ -81,7 +81,7 @@ const SidebarIcon = ({
       <span
         className={`${
           isExpanded ? "opacity-100" : "opacity-0"
-        } text-white text-sm whitespace-nowrap transition-opacity duration-300 ml-2`}
+        } text-white whitespace-nowrap transition-opacity duration-300`}
         style={{ width: isExpanded ? "auto" : "0px" }}
       >
         {label}
