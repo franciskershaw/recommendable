@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import {
   FaArrowLeft,
   FaArrowRight,
@@ -14,13 +12,13 @@ import {
 
 import SidebarIcon from "./SidebarIcon";
 
-const Sidebar = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsExpanded((prev) => !prev);
-  };
-
+const Sidebar = ({
+  isExpanded,
+  toggleSidebar,
+}: {
+  isExpanded: boolean;
+  toggleSidebar: () => void;
+}) => {
   return (
     <div
       className={`${
