@@ -11,6 +11,8 @@ import {
   FaTv,
 } from "react-icons/fa";
 
+import SidebarIcon from "./SidebarIcon";
+
 const Sidebar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -29,6 +31,7 @@ const Sidebar = () => {
           icon={<FaCog />}
           label="Settings"
           isExpanded={isExpanded}
+          to="/settings"
         />
 
         <SidebarIcon
@@ -59,33 +62,6 @@ const Sidebar = () => {
           <FaArrowRight className="text-white" />
         )}
       </button>
-    </div>
-  );
-};
-
-const SidebarIcon = ({
-  icon,
-  label,
-  isExpanded,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  isExpanded: boolean;
-}) => {
-  return (
-    <div className="flex items-center w-full">
-      <div className="flex-shrink-0 w-20 flex justify-center">
-        <span className="text-white text-xl">{icon}</span>
-      </div>
-
-      <span
-        className={`${
-          isExpanded ? "opacity-100" : "opacity-0"
-        } text-white whitespace-nowrap transition-opacity duration-300`}
-        style={{ width: isExpanded ? "auto" : "0px" }}
-      >
-        {label}
-      </span>
     </div>
   );
 };
