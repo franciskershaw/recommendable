@@ -18,7 +18,7 @@ const SidebarIcon = ({
     <Wrapper
       to={to || ""}
       onClick={onClick}
-      className="flex items-center w-full border"
+      className="flex items-center w-full"
     >
       <span className="flex-shrink-0 w-20 flex justify-center text-white text-xl">
         {icon}

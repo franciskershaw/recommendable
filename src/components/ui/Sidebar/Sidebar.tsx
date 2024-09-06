@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   FaArrowLeft,
   FaArrowRight,
+  FaCalendar,
   FaCog,
   FaFilm,
   FaMusic,
@@ -42,13 +43,35 @@ const Sidebar = () => {
       </div>
 
       <div className="flex flex-col items-center space-y-12 flex-grow justify-center">
-        <SidebarIcon icon={<FaFilm />} label="Films" isExpanded={isExpanded} />
-        <SidebarIcon icon={<FaTv />} label="TV" isExpanded={isExpanded} />
-        <SidebarIcon icon={<FaMusic />} label="Music" isExpanded={isExpanded} />
+        <SidebarIcon
+          icon={<FaFilm />}
+          label="Films"
+          isExpanded={isExpanded}
+          to="/films"
+        />
+        <SidebarIcon
+          icon={<FaTv />}
+          label="TV"
+          isExpanded={isExpanded}
+          to="/tv"
+        />
+        <SidebarIcon
+          icon={<FaMusic />}
+          label="Music"
+          isExpanded={isExpanded}
+          to="/music"
+        />
         <SidebarIcon
           icon={<FaPlane />}
           label="Travel"
           isExpanded={isExpanded}
+          to="/travel"
+        />
+        <SidebarIcon
+          icon={<FaCalendar />}
+          label="Travel"
+          isExpanded={isExpanded}
+          to="/events"
         />
       </div>
 
