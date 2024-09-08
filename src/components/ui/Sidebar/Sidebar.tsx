@@ -23,24 +23,9 @@ const Sidebar = ({
     <div
       className={`${
         isExpanded ? "w-44" : "w-20"
-      } h-full bg-slate-700 fixed left-0 top-0 flex flex-col py-8 transition-all duration-500 z-50`}
+      } h-full bg-slate-700 fixed left-0 top-0 flex flex-col justify-between py-8 transition-all duration-500 z-50`}
     >
-      <div className="flex flex-col items-center space-y-8">
-        <SidebarIcon
-          icon={<FaCog />}
-          label="Settings"
-          isExpanded={isExpanded}
-          to="/settings"
-        />
-
-        <SidebarIcon
-          icon={<FaSignInAlt />}
-          label="Log In"
-          isExpanded={isExpanded}
-        />
-      </div>
-
-      <div className="flex flex-col items-center space-y-12 flex-grow justify-center">
+      <div className="flex flex-col items-center space-y-12 justify-center">
         <SidebarIcon
           icon={<FaFilm />}
           label="Films"
@@ -70,6 +55,21 @@ const Sidebar = ({
           label="Travel"
           isExpanded={isExpanded}
           to="/events"
+        />
+      </div>
+
+      <div className="flex flex-col items-center space-y-8">
+        <SidebarIcon
+          icon={<FaCog />}
+          label="Settings"
+          isExpanded={isExpanded}
+          to="/settings"
+        />
+
+        <SidebarIcon
+          icon={<FaSignInAlt />}
+          label="Log In"
+          isExpanded={isExpanded}
         />
       </div>
 
