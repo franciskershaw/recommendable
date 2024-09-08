@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Outlet } from "react-router-dom";
 
-import Sidebar from "../ui/Sidebar/Sidebar";
+import Sidebar from "../../ui/Sidebar/Sidebar";
 
 const SharedLayout = () => {
   const [isExpanded, setIsExpanded] = useState(false);

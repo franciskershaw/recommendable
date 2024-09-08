@@ -2,7 +2,7 @@ import "./App.css";
 
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
-import SharedLayout from "./components/layout/SharedLayout";
+import SharedLayout from "./components/layout/SharedLayout/SharedLayout";
 import Auth from "./pages/Auth/Auth";
 import Events from "./pages/Categories/Events/Events";
 import Films from "./pages/Categories/Films/Films";
