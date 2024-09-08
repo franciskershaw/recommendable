@@ -1,9 +1,11 @@
+import { ReactNode } from "react";
+
 interface HeadingProps {
-  content: string;
+  children: ReactNode;
   type?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
 
-const Heading = ({ content, type = "h1" }: HeadingProps) => {
+const Heading = ({ children, type = "h1" }: HeadingProps) => {
   const headingStyles = {
     h1: "text-4xl",
     h2: "text-3xl",
@@ -16,7 +18,7 @@ const Heading = ({ content, type = "h1" }: HeadingProps) => {
   const Tag = type;
   const styles = headingStyles[type];
 
-  return <Tag className={styles}>{content}</Tag>;
+  return <Tag className={styles}>{children}</Tag>;
 };
 
 export default Heading;
