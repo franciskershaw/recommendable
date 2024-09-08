@@ -52,7 +52,7 @@ const Sidebar = ({
         />
         <SidebarIcon
           icon={<FaCalendar />}
-          label="Travel"
+          label="Events"
           isExpanded={isExpanded}
           to="/events"
         />

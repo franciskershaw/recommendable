@@ -15,6 +15,20 @@ const recommendations = [
     recommendedAt: "07/09/2024",
     actioned: false,
   },
+  {
+    id: "3",
+    name: "Eternal Sunshine of the Spotless Mind",
+    recommendedBy: "Zoe",
+    recommendedAt: "07/09/2024",
+    actioned: false,
+  },
+  {
+    id: "4",
+    name: "Lord of the Rings: The Return of the King",
+    recommendedBy: "Hannah",
+    recommendedAt: "07/09/2024",
+    actioned: false,
+  },
 ];
 
 const Films = () => {
