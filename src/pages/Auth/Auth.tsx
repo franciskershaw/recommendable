@@ -1,16 +1,32 @@
 import { FaGoogle } from "react-icons/fa";
 
+import { Button } from "@/components/ui/Button/Button";
+import Heading from "@/components/ui/Heading/Heading";
+
+import LocalForm from "./Components/LocalForm/LocalForm";
+import OrDivider from "./Components/OrDivider/OrDivider";
+
 const Auth = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-3xl font-bold mb-4">Recommendable</h1>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
-        <FaGoogle size={24} />
-        <span>Login with Google</span>
-      </button>
-      <button className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-        Logout
-      </button>
+    <div className="flex items-center justify-center h-screen rounded-md">
+      <div className="flex flex-col items-center justify-center border rounded-sm p-8">
+        <Heading type="h1" fontWeight="font-semibold" className="mb-4">
+          Login to Recommendable
+        </Heading>
+
+        {/* Google Login Button */}
+        <Button className="w-full gap-3">
+          <FaGoogle size={24} />
+          <span className="text-lg">Login with Google</span>
+        </Button>
+
+        <OrDivider />
+
+        {/* Form goes here */}
+        <div className="w-full space-y-4">
+          <LocalForm />
+        </div>
+      </div>
     </div>
   );
 };
