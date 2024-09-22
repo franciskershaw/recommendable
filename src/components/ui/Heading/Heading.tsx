@@ -13,12 +13,14 @@ interface HeadingProps {
     | "font-bold"
     | "font-extrabold"
     | "font-black";
+  className?: string;
 }
 
 const Heading = ({
   children,
   type = "h1",
   fontWeight = "font-normal",
+  className = "",
 }: HeadingProps) => {
   const headingStyles = {
     h1: "text-4xl",
@@ -30,7 +32,7 @@ const Heading = ({
   };
 
   const Tag = type;
-  const styles = `${headingStyles[type]} ${fontWeight}`;
+  const styles = `${headingStyles[type]} ${fontWeight} ${className}`;
 
   return <Tag className={styles}>{children}</Tag>;
 };
