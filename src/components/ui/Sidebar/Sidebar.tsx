@@ -10,6 +10,9 @@ import {
   FaTv,
 } from "react-icons/fa";
 
+import useAuth from "@/hooks/auth/useAuth";
+import useUser from "@/hooks/user/useUser";
+
 import SidebarIcon from "./SidebarIcon";
 
 const Sidebar = ({
@@ -19,6 +22,12 @@ const Sidebar = ({
   isExpanded: boolean;
   toggleSidebar: () => void;
 }) => {
+  const { user } = useUser();
+
+  const { logout } = useAuth();
+
+  if (!user) return null;
+
   return (
     <div
       className={`${
@@ -70,6 +79,7 @@ const Sidebar = ({
           icon={<FaSignOutAlt />}
           label="Log Out"
           isExpanded={isExpanded}
+          onClick={logout}
         />
       </div>
 

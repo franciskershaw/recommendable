@@ -32,7 +32,7 @@ const useUser = () => {
 
   async function clearUser() {
     try {
-      const response = await api.post("/api/users/logout");
+      const response = await api.post("/auth/logout");
       queryClient.setQueryData([queryKeys.user], null);
 
       return response.data;
