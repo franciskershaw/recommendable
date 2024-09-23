@@ -6,7 +6,7 @@ import {
   FaFilm,
   FaMusic,
   FaPlane,
-  FaSignInAlt,
+  FaSignOutAlt,
   FaTv,
 } from "react-icons/fa";
 
@@ -67,8 +67,8 @@ const Sidebar = ({
         />
 
         <SidebarIcon
-          icon={<FaSignInAlt />}
-          label="Log In"
+          icon={<FaSignOutAlt />}
+          label="Log Out"
           isExpanded={isExpanded}
         />
       </div>

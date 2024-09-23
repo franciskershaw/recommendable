@@ -1,12 +1,20 @@
+import { useEffect } from "react";
+
 import { FaGoogle } from "react-icons/fa";
 
 import { Button } from "@/components/ui/Button/Button";
 import Heading from "@/components/ui/Heading/Heading";
+import useUser from "@/hooks/user/useUser";
 
 import LocalForm from "./Components/LocalForm/LocalForm";
 import OrDivider from "./Components/OrDivider/OrDivider";
 
 const Auth = () => {
+  const { user } = useUser();
+
+  useEffect(() => {
+    console.log("user", user);
+  }, [user]);
   const handleGoogleLogin = () => {
     window.location.href = `${import.meta.env.VITE_API_URL}/auth/google`;
   };
