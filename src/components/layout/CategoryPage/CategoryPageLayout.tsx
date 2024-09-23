@@ -5,14 +5,14 @@ import {
   CardTitle,
 } from "@/components/ui/Card/Card";
 import Heading from "@/components/ui/Heading/Heading";
-import { recommend } from "@/types/globalTypes";
+import { Recommend } from "@/types/globalTypes";
 
 const CategoryPageLayout = ({
   name,
   recommends,
 }: {
   name: string;
-  recommends: recommend[];
+  recommends: Recommend[];
 }) => {
   return (
     <div className="space-y-2">
