@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { FaGoogle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/Button/Button";
 import Heading from "@/components/ui/Heading/Heading";
@@ -11,10 +12,13 @@ import OrDivider from "./Components/OrDivider/OrDivider";
 
 const Auth = () => {
   const { user } = useUser();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("user", user);
-  }, [user]);
+    if (user) {
+      return navigate("/films");
+    }
+  }, [user, navigate]);
   const handleGoogleLogin = () => {
     window.location.href = `${import.meta.env.VITE_API_URL}/auth/google`;
   };
