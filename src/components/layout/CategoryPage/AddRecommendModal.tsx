@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 import {
   Dialog,
   DialogContent,
@@ -7,15 +5,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/Dialog/Dialog";
+// import { Form } from "@/components/ui/Form/Form";
 import { ValidCategory } from "@/types/globalTypes";
 
 const AddRecommendModal = ({
-  children,
   open,
   onOpenChange,
   category,
 }: {
-  children: ReactNode;
   open: boolean;
   onOpenChange: (open: boolean) => void;
   category: ValidCategory;
@@ -29,7 +26,10 @@ const AddRecommendModal = ({
         <DialogDescription className="sr-only">
           Modal for adding a new recommendation
         </DialogDescription>
-        <div className="mt-4">{children}</div>
+        <div className="mt-4">
+          {/* Add Recommendation form here */}
+          {/* <Form></Form> */}
+        </div>
       </DialogContent>
     </Dialog>
   );

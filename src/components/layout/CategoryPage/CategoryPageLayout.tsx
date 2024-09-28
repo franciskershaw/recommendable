@@ -39,6 +39,7 @@ const CategoryPageLayout = ({
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {recommends.map((recommend) => (
+            // TODO: Card needs to be in its own component with all the action buttons
             <Card key={recommend._id}>
               <div className="flex-grow">
                 <CardHeader>
@@ -56,9 +57,7 @@ const CategoryPageLayout = ({
         open={openAddRecommendModal}
         onOpenChange={(open) => setOpenAddRecommendModal(open)}
         category={category}
-      >
-        Test
-      </AddRecommendModal>
+      />
     </>
   );
 };
