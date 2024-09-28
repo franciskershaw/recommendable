@@ -22,7 +22,7 @@ const AddRecommendModal = ({
 }) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent aria-describedby={"Modal for adding a new recommendation"}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>{`Add a new recommendation for ${category}`}</DialogTitle>
         </DialogHeader>
