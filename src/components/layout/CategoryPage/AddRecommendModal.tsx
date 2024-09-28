@@ -5,8 +5,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/Dialog/Dialog";
-// import { Form } from "@/components/ui/Form/Form";
 import { ValidCategory } from "@/types/globalTypes";
+
+import AddRecommendForm from "./AddRecommendForm";
 
 const AddRecommendModal = ({
   open,
@@ -27,8 +28,7 @@ const AddRecommendModal = ({
           Modal for adding a new recommendation
         </DialogDescription>
         <div className="mt-4">
-          {/* Add Recommendation form here */}
-          {/* <Form></Form> */}
+          <AddRecommendForm category={category} />
         </div>
       </DialogContent>
     </Dialog>
