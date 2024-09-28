@@ -13,10 +13,12 @@ const AddRecommendModal = ({
   open,
   onOpenChange,
   category,
+  closeModal,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   category: ValidCategory;
+  closeModal: () => void;
 }) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -28,7 +30,7 @@ const AddRecommendModal = ({
           Modal for adding a new recommendation
         </DialogDescription>
         <div className="mt-4">
-          <AddRecommendForm category={category} />
+          <AddRecommendForm category={category} closeModal={closeModal} />
         </div>
       </DialogContent>
     </Dialog>

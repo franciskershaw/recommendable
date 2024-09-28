@@ -57,6 +57,7 @@ const CategoryPageLayout = ({
         open={openAddRecommendModal}
         onOpenChange={(open) => setOpenAddRecommendModal(open)}
         category={category}
+        closeModal={() => setOpenAddRecommendModal(false)}
       />
     </>
   );

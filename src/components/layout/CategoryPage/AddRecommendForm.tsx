@@ -16,7 +16,13 @@ import { ValidCategory } from "@/types/globalTypes";
 
 import { newRecommendSchema } from "./utils/addRecommendSchema";
 
-const AddRecommendForm = ({ category }: { category: ValidCategory }) => {
+const AddRecommendForm = ({
+  category,
+  closeModal,
+}: {
+  category: ValidCategory;
+  closeModal: () => void;
+}) => {
   const form = useForm({
     resolver: zodResolver(newRecommendSchema),
     defaultValues: {
@@ -33,10 +39,7 @@ const AddRecommendForm = ({ category }: { category: ValidCategory }) => {
       {
         onSuccess: () => {
           form.reset();
-          console.log("Recommendation added successfully!");
-        },
-        onError: (error) => {
-          console.error("Error adding recommendation:", error);
+          closeModal();
         },
       }
     );

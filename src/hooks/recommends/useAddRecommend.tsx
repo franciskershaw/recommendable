@@ -18,15 +18,19 @@ const useAddRecommend = () => {
   const { user } = useUser();
 
   const addRecommend = async (data: AddRecommendData) => {
-    if (!user?.accessToken) {
-      throw new Error("User is not authenticated");
-    }
+    try {
+      if (!user?.accessToken) {
+        throw new Error("User is not authenticated");
+      }
 
-    return api.post("/recommends", data, {
-      headers: {
-        Authorization: `Bearer ${user.accessToken}`,
-      },
-    });
+      return api.post("/recommends", data, {
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      });
+    } catch (error) {
+      console.error("Error adding recommendation:", error);
+    }
   };
 
   // Create the mutation hook with appropriate types
@@ -34,6 +38,9 @@ const useAddRecommend = () => {
     mutationFn: addRecommend,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [queryKeys.recommends] });
+    },
+    onError: (error) => {
+      console.error("Error adding recommendation:", error);
     },
   });
 };
