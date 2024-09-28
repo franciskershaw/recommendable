@@ -38,7 +38,7 @@ const CategoryPageLayout = ({
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {recommends.map((recommend) => (
+          {recommends?.map((recommend) => (
             // TODO: Card needs to be in its own component with all the action buttons
             <Card key={recommend._id}>
               <div className="flex-grow">
