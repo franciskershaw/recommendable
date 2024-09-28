@@ -11,12 +11,12 @@ import {
   FormMessage,
 } from "@/components/ui/Form/Form";
 import { Input } from "@/components/ui/Form/Input/Input";
+import useAddRecommend from "@/hooks/recommends/useAddRecommend";
 import { ValidCategory } from "@/types/globalTypes";
 
 import { newRecommendSchema } from "./utils/addRecommendSchema";
 
 const AddRecommendForm = ({ category }: { category: ValidCategory }) => {
-  // Initialize the form with default values and the Zod resolver
   const form = useForm({
     resolver: zodResolver(newRecommendSchema),
     defaultValues: {
@@ -25,10 +25,21 @@ const AddRecommendForm = ({ category }: { category: ValidCategory }) => {
     },
   });
 
-  // Submit handler function
+  const addRecommend = useAddRecommend();
+
   const onSubmit = (data: { name: string; recommendedBy: string }) => {
-    // Handle the form data here (e.g., send to an API)
-    console.log("Form Data:", { ...data, category });
+    addRecommend.mutate(
+      { ...data, category },
+      {
+        onSuccess: () => {
+          form.reset();
+          console.log("Recommendation added successfully!");
+        },
+        onError: (error) => {
+          console.error("Error adding recommendation:", error);
+        },
+      }
+    );
   };
 
   return (
