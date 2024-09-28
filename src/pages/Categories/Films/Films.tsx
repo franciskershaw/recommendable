@@ -1,40 +1,49 @@
 import CategoryPageLayout from "@/components/layout/CategoryPage/CategoryPageLayout";
+import { CATEGORY_FILMS } from "@/constants/categories";
 
 const recommendations = [
   {
-    id: "1",
+    _id: "1",
     name: "Inception",
     recommendedBy: "Zoe",
     recommendedAt: "07/09/2024",
-    actioned: false,
+    archived: false,
+    category: CATEGORY_FILMS,
   },
   {
-    id: "2",
+    _id: "2",
     name: "Interstellar",
     recommendedBy: "Hannah",
     recommendedAt: "07/09/2024",
-    actioned: false,
+    archived: false,
+    category: CATEGORY_FILMS,
   },
   {
-    id: "3",
+    _id: "3",
     name: "Eternal Sunshine of the Spotless Mind",
     recommendedBy: "Zoe",
     recommendedAt: "07/09/2024",
-    actioned: false,
+    archived: false,
+    category: CATEGORY_FILMS,
   },
   {
-    id: "4",
+    _id: "4",
     name: "Lord of the Rings: The Return of the King",
     recommendedBy: "Hannah",
     recommendedAt: "07/09/2024",
-    actioned: false,
+    archived: false,
+    category: CATEGORY_FILMS,
   },
 ];
 
 const Films = () => {
   return (
     <>
-      <CategoryPageLayout name={"Films"} recommends={recommendations} />
+      <CategoryPageLayout
+        name={"Films"}
+        recommends={recommendations}
+        category={CATEGORY_FILMS}
+      />
     </>
   );
 };

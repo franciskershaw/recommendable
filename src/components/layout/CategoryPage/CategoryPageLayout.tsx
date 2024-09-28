@@ -10,16 +10,18 @@ import {
   CardTitle,
 } from "@/components/ui/Card/Card";
 import Heading from "@/components/ui/Heading/Heading";
-import { Recommend } from "@/types/globalTypes";
+import { Recommend, ValidCategory } from "@/types/globalTypes";
 
 import AddRecommendModal from "./AddRecommendModal";
 
 const CategoryPageLayout = ({
   name,
   recommends,
+  category,
 }: {
   name: string;
   recommends: Recommend[];
+  category: ValidCategory;
 }) => {
   const [openAddRecommendModal, setOpenAddRecommendModal] = useState(false);
   return (
@@ -37,7 +39,7 @@ const CategoryPageLayout = ({
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {recommends.map((recommend) => (
-            <Card key={recommend.id}>
+            <Card key={recommend._id}>
               <div className="flex-grow">
                 <CardHeader>
                   <CardTitle>{recommend.name}</CardTitle>
@@ -53,7 +55,7 @@ const CategoryPageLayout = ({
       <AddRecommendModal
         open={openAddRecommendModal}
         onOpenChange={(open) => setOpenAddRecommendModal(open)}
-        title={`Add recomendation to ${name}`}
+        category={category}
       >
         Test
       </AddRecommendModal>
