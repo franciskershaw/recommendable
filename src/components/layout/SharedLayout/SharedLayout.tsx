@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { Outlet } from "react-router-dom";
 
+import { Toaster } from "@/components/ui/Toaster/Toaster";
+
 import Sidebar from "../../ui/Sidebar/Sidebar";
 
 const SharedLayout = () => {
@@ -20,6 +22,7 @@ const SharedLayout = () => {
       >
         <Outlet />
       </main>
+      <Toaster />
     </div>
   );
 };
