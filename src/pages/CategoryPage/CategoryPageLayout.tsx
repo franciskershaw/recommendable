@@ -11,6 +11,7 @@ import { ValidCategory } from "@/types/globalTypes";
 import AddRecommendModal from "./components/AddRecommendModal/AddRecommendModal";
 import CategoryHeading from "./components/CategoryHeading/CategoryHeading";
 import DeleteRecommendConfirmation from "./components/DeleteRecommendConfirmation/DeleteRecommendConfirmation";
+import ArchivedRecommends from "./components/Recommends/ArchivedRecommends";
 import OpenRecommendations from "./components/Recommends/OpenRecommends";
 
 const CategoryPageLayout = ({
@@ -29,7 +30,7 @@ const CategoryPageLayout = ({
     selectedRecommend,
   } = useModals();
 
-  const { recommends } = useRecommends();
+  const { recommends, archivedRecommends } = useRecommends();
 
   return (
     <>
@@ -51,11 +52,7 @@ const CategoryPageLayout = ({
           </TabsContent>
 
           <TabsContent value="archived">
-            <div className="flex flex-col items-center justify-center py-16">
-              <p className="text-lg text-muted-foreground mb-4">
-                Archived here
-              </p>
-            </div>
+            <ArchivedRecommends recommends={archivedRecommends[category]} />
           </TabsContent>
         </div>
       </Tabs>
