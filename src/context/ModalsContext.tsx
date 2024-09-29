@@ -3,52 +3,37 @@ import { createContext, ReactNode, useContext, useState } from "react";
 import { Recommend } from "@/types/globalTypes";
 
 type ModalsContextType = {
-  isAddRecommendModalOpen: boolean;
-  isEditRecommendModalOpen: boolean;
+  isRecommendModalOpen: boolean;
   selectedRecommend: Recommend | null;
-  openAddModal: () => void;
-  closeAddModal: () => void;
-  openEditModal: (recommend: Recommend) => void;
-  closeEditModal: () => void;
+  openModal: (recommend?: Recommend) => void;
+  closeModal: () => void;
 };
 
 const ModalsContext = createContext<ModalsContextType | undefined>(undefined);
 
 const ModalsProvider = ({ children }: { children: ReactNode }) => {
-  const [isAddRecommendModalOpen, setisAddRecommendModalOpen] = useState(false);
+  const [isRecommendModalOpen, setIsRecommendModalOpen] = useState(false);
   const [selectedRecommend, setSelectedRecommend] = useState<Recommend | null>(
     null
   );
 
-  const openAddModal = () => {
-    setisAddRecommendModalOpen(true);
+  const openModal = (recommend?: Recommend) => {
+    setSelectedRecommend(recommend || null);
+    setIsRecommendModalOpen(true);
+  };
+
+  const closeModal = () => {
     setSelectedRecommend(null);
-  };
-
-  const closeAddModal = () => {
-    setisAddRecommendModalOpen(false);
-  };
-
-  const openEditModal = (recommend: Recommend) => {
-    setSelectedRecommend(recommend);
-    setisAddRecommendModalOpen(true);
-  };
-
-  const closeEditModal = () => {
-    setSelectedRecommend(null);
-    setisAddRecommendModalOpen(false);
+    setIsRecommendModalOpen(false);
   };
 
   return (
     <ModalsContext.Provider
       value={{
-        isAddRecommendModalOpen,
-        isEditRecommendModalOpen: !!selectedRecommend,
+        isRecommendModalOpen,
         selectedRecommend,
-        openAddModal,
-        closeAddModal,
-        openEditModal,
-        closeEditModal,
+        openModal,
+        closeModal,
       }}
     >
       {children}

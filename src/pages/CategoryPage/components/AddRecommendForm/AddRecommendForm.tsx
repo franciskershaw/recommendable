@@ -16,7 +16,7 @@ import useAddRecommend from "@/hooks/recommends/useAddRecommend";
 import useEditRecommend from "@/hooks/recommends/useEditRecommend";
 import { ValidCategory } from "@/types/globalTypes";
 
-import { newRecommendSchema } from "../utils/addRecommendSchema";
+import { newRecommendSchema } from "../../utils/addRecommendSchema";
 
 const AddRecommendForm = ({
   category,

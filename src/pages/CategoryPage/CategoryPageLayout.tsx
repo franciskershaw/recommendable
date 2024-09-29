@@ -6,8 +6,8 @@ import { useModals } from "@/context/ModalsContext";
 import useRecommends from "@/hooks/recommends/useRecommends";
 import { Recommend, ValidCategory } from "@/types/globalTypes";
 
-import AddRecommendModal from "./components/AddRecommendModal";
-import RecommendCard from "./components/RecommendCard";
+import AddRecommendModal from "./components/AddRecommendModal/AddRecommendModal";
+import RecommendCard from "./components/RecommendCard/RecommendCard";
 
 const CategoryPageLayout = ({
   name,
@@ -16,7 +16,7 @@ const CategoryPageLayout = ({
   name: string;
   category: ValidCategory;
 }) => {
-  const { isAddRecommendModalOpen, openAddModal, closeAddModal } = useModals();
+  const { openModal, closeModal, isRecommendModalOpen } = useModals();
 
   const { recommends } = useRecommends();
 
@@ -27,7 +27,7 @@ const CategoryPageLayout = ({
         <div className="flex items-center gap-3">
           <Heading>{name}</Heading>
           {recommends[category].length !== 0 && (
-            <Button variant="outline" onClick={openAddModal}>
+            <Button variant="outline" onClick={() => openModal()}>
               <FaPlus />
             </Button>
           )}
@@ -47,7 +47,7 @@ const CategoryPageLayout = ({
             </p>
             <Button
               variant="default"
-              onClick={openAddModal}
+              onClick={() => openModal()}
               className="flex items-center gap-2"
             >
               <FaPlus />
@@ -59,10 +59,10 @@ const CategoryPageLayout = ({
 
       {/* Add/Edit Recommend Modal */}
       <AddRecommendModal
-        open={isAddRecommendModalOpen}
-        onOpenChange={(open) => (open ? openAddModal() : closeAddModal())}
+        open={isRecommendModalOpen}
+        onOpenChange={(open) => (open ? openModal() : closeModal())}
         category={category}
-        closeModal={closeAddModal}
+        closeModal={closeModal}
       />
     </>
   );

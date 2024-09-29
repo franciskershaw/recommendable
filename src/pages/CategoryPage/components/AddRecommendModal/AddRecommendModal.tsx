@@ -5,9 +5,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/Dialog/Dialog";
+import { useModals } from "@/context/ModalsContext";
 import { ValidCategory } from "@/types/globalTypes";
 
-import AddRecommendForm from "./AddRecommendForm";
+import AddRecommendForm from "../AddRecommendForm/AddRecommendForm";
 
 const AddRecommendModal = ({
   open,
@@ -20,11 +21,16 @@ const AddRecommendModal = ({
   category: ValidCategory;
   closeModal: () => void;
 }) => {
+  const { selectedRecommend } = useModals();
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{`Add a new recommendation for ${category}`}</DialogTitle>
+          <DialogTitle>
+            {selectedRecommend
+              ? `Edit '${selectedRecommend.name}'`
+              : `Add a new recommendation for ${category}`}
+          </DialogTitle>
         </DialogHeader>
         <DialogDescription className="sr-only">
           Modal for adding a new recommendation
