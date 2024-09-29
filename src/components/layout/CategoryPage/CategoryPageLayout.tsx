@@ -3,16 +3,11 @@ import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 
 import { Button } from "@/components/ui/Button/Button";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/Card/Card";
 import Heading from "@/components/ui/Heading/Heading";
 import { Recommend, ValidCategory } from "@/types/globalTypes";
 
 import AddRecommendModal from "./AddRecommendModal";
+import RecommendCard from "./RecommendCard";
 
 const CategoryPageLayout = ({
   name,
@@ -39,17 +34,7 @@ const CategoryPageLayout = ({
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {recommends?.map((recommend) => (
-            // TODO: Card needs to be in its own component with all the action buttons
-            <Card key={recommend._id}>
-              <div className="flex-grow">
-                <CardHeader>
-                  <CardTitle>{recommend.name}</CardTitle>
-                  <CardDescription>
-                    Recommended by {recommend.recommendedBy}
-                  </CardDescription>
-                </CardHeader>
-              </div>
-            </Card>
+            <RecommendCard key={recommend._id} recommend={recommend} />
           ))}
         </div>
       </div>
