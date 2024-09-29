@@ -5,8 +5,8 @@ import { Recommend } from "@/types/globalTypes";
 type ModalsContextType = {
   isRecommendModalOpen: boolean;
   selectedRecommend: Recommend | null;
-  openModal: (recommend?: Recommend) => void;
-  closeModal: () => void;
+  openRecommendModal: (recommend?: Recommend) => void;
+  closeRecommendModal: () => void;
 };
 
 const ModalsContext = createContext<ModalsContextType | undefined>(undefined);
@@ -17,12 +17,12 @@ const ModalsProvider = ({ children }: { children: ReactNode }) => {
     null
   );
 
-  const openModal = (recommend?: Recommend) => {
+  const openRecommendModal = (recommend?: Recommend) => {
     setSelectedRecommend(recommend || null);
     setIsRecommendModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeRecommendModal = () => {
     setSelectedRecommend(null);
     setIsRecommendModalOpen(false);
   };
@@ -32,8 +32,8 @@ const ModalsProvider = ({ children }: { children: ReactNode }) => {
       value={{
         isRecommendModalOpen,
         selectedRecommend,
-        openModal,
-        closeModal,
+        openRecommendModal,
+        closeRecommendModal,
       }}
     >
       {children}
