@@ -7,6 +7,7 @@ import useRecommends from "@/hooks/recommends/useRecommends";
 import { Recommend, ValidCategory } from "@/types/globalTypes";
 
 import AddRecommendModal from "./components/AddRecommendModal/AddRecommendModal";
+import DeleteRecommendConfirmation from "./components/DeleteRecommendConfirmation/DeleteRecommendConfirmation";
 import RecommendCard from "./components/RecommendCard/RecommendCard";
 
 const CategoryPageLayout = ({
@@ -16,7 +17,14 @@ const CategoryPageLayout = ({
   name: string;
   category: ValidCategory;
 }) => {
-  const { openAddRecommend, closeModal, isRecommendModalOpen } = useModals();
+  const {
+    openAddRecommend,
+    openDeleteRecommend,
+    closeModal,
+    isRecommendModalOpen,
+    isDeletionModalOpen,
+    selectedRecommend,
+  } = useModals();
 
   const { recommends } = useRecommends();
 
@@ -65,6 +73,17 @@ const CategoryPageLayout = ({
         closeModal={closeModal}
       />
       {/* Confirm deletion modal */}
+
+      <DeleteRecommendConfirmation
+        open={isDeletionModalOpen}
+        onOpenChange={(open) =>
+          open && selectedRecommend
+            ? openDeleteRecommend(selectedRecommend)
+            : closeModal()
+        }
+        recommend={selectedRecommend}
+        closeModal={closeModal}
+      />
     </>
   );
 };

@@ -17,7 +17,7 @@ import { useModals } from "@/context/ModalsContext";
 import { Recommend } from "@/types/globalTypes";
 
 const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
-  const { openAddRecommend } = useModals();
+  const { openAddRecommend, openDeleteRecommend } = useModals();
   return (
     <Card className="relative">
       {/* Drag Handle */}
@@ -36,7 +36,11 @@ const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
         <div className="space-x-2">
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button size="sm" variant="destructive">
+              <Button
+                onClick={() => openDeleteRecommend(recommend)}
+                size="sm"
+                variant="destructive"
+              >
                 <FaTrash size={16} />
               </Button>
             </TooltipTrigger>

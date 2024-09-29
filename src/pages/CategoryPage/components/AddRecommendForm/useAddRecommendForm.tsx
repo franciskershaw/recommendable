@@ -9,7 +9,7 @@ import { ValidCategory } from "@/types/globalTypes";
 import { newRecommendSchema } from "../../utils/addRecommendSchema";
 
 const useAddRecommendForm = (category: ValidCategory) => {
-  const { selectedRecommend } = useModals();
+  const { selectedRecommend, closeModal } = useModals();
   const form = useForm({
     resolver: zodResolver(newRecommendSchema),
     defaultValues: {
@@ -23,7 +23,7 @@ const useAddRecommendForm = (category: ValidCategory) => {
 
   const handleSuccess = () => {
     form.reset();
-    // closeModal();
+    closeModal();
   };
 
   const onSubmit = (data: { name: string; recommendedBy: string }) => {
