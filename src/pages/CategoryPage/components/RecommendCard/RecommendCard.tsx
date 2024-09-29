@@ -32,35 +32,39 @@ const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
       </CardHeader>
 
       {/* Action Buttons */}
-      <CardFooter className="flex justify-center gap-8">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button size="sm" variant="default">
-              <FaArchive size={16} />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>Archive</TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              onClick={() => openModal(recommend)}
-              size="sm"
-              variant="outline"
-            >
-              <FaEdit size={16} />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>Edit</TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button size="sm" variant="destructive">
-              <FaTrash size={16} />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>Delete</TooltipContent>
-        </Tooltip>
+      <CardFooter className="flex justify-between">
+        <div className="space-x-2">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button size="sm" variant="destructive">
+                <FaTrash size={16} />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Delete</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                onClick={() => openModal(recommend)}
+                size="sm"
+                variant="outline"
+              >
+                <FaEdit size={16} />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Edit</TooltipContent>
+          </Tooltip>
+        </div>
+        <div>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button size="sm" variant="default">
+                <FaArchive size={16} />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Archive</TooltipContent>
+          </Tooltip>
+        </div>
       </CardFooter>
     </Card>
   );
