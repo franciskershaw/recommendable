@@ -14,7 +14,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/Tooltip/Tooltip";
 import { useModals } from "@/context/ModalsContext";
-import useUnarchiveRecommend from "@/hooks/recommends/useUnArchive";
+import useUnarchiveRecommend from "@/hooks/recommends/useUnarchive";
 import { Recommend } from "@/types/globalTypes";
 
 const ArchivedCard = ({ recommend }: { recommend: Recommend }) => {
