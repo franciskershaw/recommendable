@@ -14,10 +14,19 @@ import {
   TooltipTrigger,
 } from "@/components/ui/Tooltip/Tooltip";
 import { useModals } from "@/context/ModalsContext";
+import useArchiveRecommend from "@/hooks/recommends/useArchiveRecommend";
 import { Recommend } from "@/types/globalTypes";
 
 const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
   const { openAddRecommend, openDeleteRecommend } = useModals();
+  const archiveRecommend = useArchiveRecommend();
+
+  const onArchive = async () => {
+    if (recommend?._id) {
+      archiveRecommend.mutate({ _id: recommend._id });
+    }
+  };
+
   return (
     <Card className="relative">
       {/* Drag Handle */}
@@ -59,16 +68,15 @@ const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
             <TooltipContent>Edit</TooltipContent>
           </Tooltip>
         </div>
-        <div>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button size="sm" variant="default">
-                <FaArchive size={16} />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Archive</TooltipContent>
-          </Tooltip>
-        </div>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button onClick={onArchive} size="sm" variant="default">
+              <FaArchive size={16} />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Archive</TooltipContent>
+        </Tooltip>
       </CardFooter>
     </Card>
   );
