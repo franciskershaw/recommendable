@@ -36,12 +36,29 @@ const useRecommends = () => {
     return res.data;
   };
 
+  const getArchivedRecommends = async () => {
+    if (!user?.accessToken) {
+      throw new Error("User is not authenticated");
+    }
+
+    const res = await api.get("/recommends/archived", {
+      headers: { Authorization: `Bearer ${user.accessToken}` },
+    });
+
+    return res.data;
+  };
+
   const { data: recommends = emptyRecommends } = useQuery({
     queryKey: [queryKeys.recommends],
     queryFn: getRecommends,
   });
 
-  return { recommends };
+  const { data: archivedRecommends = emptyRecommends } = useQuery({
+    queryKey: [queryKeys.archivedRecommends],
+    queryFn: getArchivedRecommends,
+  });
+
+  return { recommends, archivedRecommends };
 };
 
 export default useRecommends;
