@@ -52,7 +52,6 @@ const modalsReducer = (
         ...state,
         isRecommendModalOpen: false,
         isDeletionModalOpen: false,
-        selectedRecommend: null,
       };
 
     case "RESET_SELECTED_DATA":

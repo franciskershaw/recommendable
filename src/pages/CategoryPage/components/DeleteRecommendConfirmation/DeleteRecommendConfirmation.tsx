@@ -6,6 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/Dialog/Dialog";
+import useDeleteRecommend from "@/hooks/recommends/useDeleteRecommend";
 import { Recommend } from "@/types/globalTypes";
 
 const DeleteRecommendConfirmation = ({
@@ -19,6 +20,17 @@ const DeleteRecommendConfirmation = ({
   onOpenChange: (open: boolean) => void;
   closeModal: () => void;
 }) => {
+  const deleteRecommend = useDeleteRecommend();
+
+  const onDelete = () => {
+    if (recommend?._id) {
+      deleteRecommend.mutate(
+        { _id: recommend?._id },
+        { onSuccess: closeModal }
+      );
+    }
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
@@ -40,7 +52,9 @@ const DeleteRecommendConfirmation = ({
             <Button variant={"outline"} onClick={closeModal}>
               Cancel
             </Button>
-            <Button variant={"destructive"}>Delete</Button>
+            <Button onClick={onDelete} variant={"destructive"}>
+              Delete
+            </Button>
           </div>
         </div>
       </DialogContent>
