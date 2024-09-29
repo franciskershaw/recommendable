@@ -1,14 +1,17 @@
-import { FaPlus } from "react-icons/fa";
-
-import { Button } from "@/components/ui/Button/Button";
-import Heading from "@/components/ui/Heading/Heading";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/Tabs/Tabs";
 import { useModals } from "@/context/ModalsContext";
 import useRecommends from "@/hooks/recommends/useRecommends";
-import { Recommend, ValidCategory } from "@/types/globalTypes";
+import { ValidCategory } from "@/types/globalTypes";
 
 import AddRecommendModal from "./components/AddRecommendModal/AddRecommendModal";
+import CategoryHeading from "./components/CategoryHeading/CategoryHeading";
 import DeleteRecommendConfirmation from "./components/DeleteRecommendConfirmation/DeleteRecommendConfirmation";
-import RecommendCard from "./components/RecommendCard/RecommendCard";
+import OpenRecommendations from "./components/Recommends/OpenRecommends";
 
 const CategoryPageLayout = ({
   name,
@@ -30,49 +33,39 @@ const CategoryPageLayout = ({
 
   return (
     <>
-      <div className="space-y-4">
-        {/* Header Section */}
-        <div className="flex items-center gap-3">
-          <Heading>{name}</Heading>
-          {recommends[category].length !== 0 && (
-            <Button variant="outline" onClick={() => openAddRecommend()}>
-              <FaPlus />
-            </Button>
-          )}
+      <Tabs defaultValue="open" className="w-full">
+        <div className="space-y-4">
+          <div className="flex items-center justify-between gap-3">
+            <CategoryHeading
+              name={name}
+              showButton={recommends[category].length !== 0}
+            />
+            <TabsList className="ml-auto">
+              <TabsTrigger value="open">Open</TabsTrigger>
+              <TabsTrigger value="archived">Archived</TabsTrigger>
+            </TabsList>
+          </div>
+
+          <TabsContent value="open">
+            <OpenRecommendations recommends={recommends[category]} />
+          </TabsContent>
+
+          <TabsContent value="archived">
+            <div className="flex flex-col items-center justify-center py-16">
+              <p className="text-lg text-muted-foreground mb-4">
+                Archived here
+              </p>
+            </div>
+          </TabsContent>
         </div>
+      </Tabs>
 
-        {/* Content Section */}
-        {recommends[category].length > 0 ? (
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {recommends[category].map((recommend: Recommend) => (
-              <RecommendCard key={recommend._id} recommend={recommend} />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center py-16">
-            <p className="text-lg text-muted-foreground mb-4">
-              No recommendations yet. Start by adding a new one!
-            </p>
-            <Button
-              variant="default"
-              onClick={() => openAddRecommend()}
-              className="flex items-center gap-2"
-            >
-              <FaPlus />
-              Add a Recommendation
-            </Button>
-          </div>
-        )}
-      </div>
-
-      {/* Add/Edit Recommend Modal */}
       <AddRecommendModal
         open={isRecommendModalOpen}
         onOpenChange={(open) => (open ? openAddRecommend() : closeModal())}
         category={category}
         closeModal={closeModal}
       />
-      {/* Confirm deletion modal */}
 
       <DeleteRecommendConfirmation
         open={isDeletionModalOpen}
