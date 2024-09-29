@@ -4,14 +4,17 @@ import { createRoot } from "react-dom/client";
 
 import App from "./App.tsx";
 import { TooltipProvider } from "./components/ui/Tooltip/Tooltip.tsx";
+import { ModalsProvider } from "./context/ModalsContext.tsx";
 import TanstackProvider from "./tanstackQuery/TanstackProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <TanstackProvider>
-      <TooltipProvider>
-        <App />
-      </TooltipProvider>
+      <ModalsProvider>
+        <TooltipProvider>
+          <App />
+        </TooltipProvider>
+      </ModalsProvider>
     </TanstackProvider>
   </StrictMode>
 );
