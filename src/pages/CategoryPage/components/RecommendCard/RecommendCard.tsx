@@ -17,7 +17,7 @@ import { useModals } from "@/context/ModalsContext";
 import { Recommend } from "@/types/globalTypes";
 
 const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
-  const { openRecommendModal } = useModals();
+  const { openAddRecommend } = useModals();
   return (
     <Card className="relative">
       {/* Drag Handle */}
@@ -45,7 +45,7 @@ const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
-                onClick={() => openRecommendModal(recommend)}
+                onClick={() => openAddRecommend(recommend)}
                 size="sm"
                 variant="outline"
               >

@@ -16,8 +16,7 @@ const CategoryPageLayout = ({
   name: string;
   category: ValidCategory;
 }) => {
-  const { openRecommendModal, closeRecommendModal, isRecommendModalOpen } =
-    useModals();
+  const { openAddRecommend, closeModal, isRecommendModalOpen } = useModals();
 
   const { recommends } = useRecommends();
 
@@ -28,7 +27,7 @@ const CategoryPageLayout = ({
         <div className="flex items-center gap-3">
           <Heading>{name}</Heading>
           {recommends[category].length !== 0 && (
-            <Button variant="outline" onClick={() => openRecommendModal()}>
+            <Button variant="outline" onClick={() => openAddRecommend()}>
               <FaPlus />
             </Button>
           )}
@@ -48,7 +47,7 @@ const CategoryPageLayout = ({
             </p>
             <Button
               variant="default"
-              onClick={() => openRecommendModal()}
+              onClick={() => openAddRecommend()}
               className="flex items-center gap-2"
             >
               <FaPlus />
@@ -61,12 +60,11 @@ const CategoryPageLayout = ({
       {/* Add/Edit Recommend Modal */}
       <AddRecommendModal
         open={isRecommendModalOpen}
-        onOpenChange={(open) =>
-          open ? openRecommendModal() : closeRecommendModal()
-        }
+        onOpenChange={(open) => (open ? openAddRecommend() : closeModal())}
         category={category}
-        closeModal={closeRecommendModal}
+        closeModal={closeModal}
       />
+      {/* Confirm deletion modal */}
     </>
   );
 };
