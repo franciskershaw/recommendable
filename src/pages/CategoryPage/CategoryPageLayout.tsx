@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+
+import { useLocation } from "react-router-dom";
+
 import {
   Tabs,
   TabsContent,
@@ -31,10 +35,21 @@ const CategoryPageLayout = ({
   } = useModals();
 
   const { recommends, archivedRecommends } = useRecommends();
+  const location = useLocation();
+
+  const [activeTab, setActiveTab] = useState<string>("open");
+
+  useEffect(() => {
+    setActiveTab("open");
+  }, [location]);
 
   return (
     <>
-      <Tabs defaultValue="open" className="w-full">
+      <Tabs
+        value={activeTab}
+        onValueChange={(value) => setActiveTab(value)}
+        className="w-full"
+      >
         <div className="space-y-4">
           <div className="flex items-center justify-between gap-3">
             <CategoryHeading
