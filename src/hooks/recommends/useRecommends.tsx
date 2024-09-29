@@ -1,5 +1,3 @@
-import { useMemo } from "react";
-
 import { useQuery } from "@tanstack/react-query";
 
 import useAxios from "@/axios/useAxios";
@@ -31,21 +29,17 @@ const useRecommends = () => {
       throw new Error("User is not authenticated");
     }
 
-    return api.get("/recommends", {
-      headers: {
-        Authorization: `Bearer ${user.accessToken}`,
-      },
+    const res = await api.get("/recommends", {
+      headers: { Authorization: `Bearer ${user.accessToken}` },
     });
+
+    return res.data;
   };
 
-  const { data } = useQuery({
+  const { data: recommends = emptyRecommends } = useQuery({
     queryKey: [queryKeys.recommends],
     queryFn: getRecommends,
   });
-
-  const recommends = useMemo(() => {
-    return data?.data || emptyRecommends;
-  }, [data]);
 
   return { recommends };
 };
