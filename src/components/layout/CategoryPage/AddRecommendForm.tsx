@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/Form/Input/Input";
 import { useModals } from "@/context/ModalsContext";
 import useAddRecommend from "@/hooks/recommends/useAddRecommend";
+import useEditRecommend from "@/hooks/recommends/useEditRecommend";
 import { ValidCategory } from "@/types/globalTypes";
 
 import { newRecommendSchema } from "./utils/addRecommendSchema";
@@ -34,18 +35,21 @@ const AddRecommendForm = ({
   });
 
   const addRecommend = useAddRecommend();
+  const editRecommend = useEditRecommend();
+
+  const handleSuccess = () => {
+    form.reset();
+    closeModal();
+  };
 
   const onSubmit = (data: { name: string; recommendedBy: string }) => {
-    if (!selectedRecommend) {
-      addRecommend.mutate(
-        { ...data, category },
-        {
-          onSuccess: () => {
-            form.reset();
-            closeModal();
-          },
-        }
+    if (selectedRecommend) {
+      editRecommend.mutate(
+        { ...data, _id: selectedRecommend._id },
+        { onSuccess: handleSuccess }
       );
+    } else {
+      addRecommend.mutate({ ...data, category }, { onSuccess: handleSuccess });
     }
   };
 
@@ -84,7 +88,7 @@ const AddRecommendForm = ({
         />
 
         <Button onClick={form.handleSubmit(onSubmit)}>
-          Add Recommendation
+          {selectedRecommend ? "Edit Recommendation" : "Add Recommendation"}
         </Button>
       </Form>
     </div>

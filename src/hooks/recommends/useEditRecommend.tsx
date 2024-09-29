@@ -3,49 +3,49 @@ import { toast } from "sonner";
 
 import useAxios from "@/axios/useAxios";
 import queryKeys from "@/tanstackQuery/queryKeys";
-import { ValidCategory } from "@/types/globalTypes";
 
 import useUser from "../user/useUser";
 
-interface AddRecommendData {
+interface EditRecommendData {
+  _id: string;
   name: string;
   recommendedBy: string;
-  category: ValidCategory;
 }
 
-const useAddRecommend = () => {
+const useEditRecommend = () => {
   const queryClient = useQueryClient();
   const api = useAxios();
   const { user } = useUser();
 
-  const addRecommend = async (data: AddRecommendData) => {
+  const editRecommend = async (data: EditRecommendData) => {
     try {
       if (!user?.accessToken) {
         throw new Error("User is not authenticated");
       }
 
-      return api.post("/recommends", data, {
+      const { _id, ...payload } = data;
+
+      return await api.put(`/recommends/${_id}`, payload, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`,
         },
       });
     } catch (error) {
-      toast.error("Failed to add recommendation");
-      console.error("Error adding recommendation:", error);
+      toast.error("Failed to edit recommendation");
+      console.error("Error editing recommendation:", error);
     }
   };
 
-  // Create the mutation hook with appropriate types
   return useMutation({
-    mutationFn: addRecommend,
+    mutationFn: editRecommend,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [queryKeys.recommends] });
-      toast.success("Recommendation added successfully");
+      toast.success("Recommendation edited successfully");
     },
     onError: (error) => {
-      console.error("Error adding recommendation:", error);
+      console.error("Error editing recommendation:", error);
     },
   });
 };
 
-export default useAddRecommend;
+export default useEditRecommend;
