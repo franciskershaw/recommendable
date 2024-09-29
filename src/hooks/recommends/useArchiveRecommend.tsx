@@ -38,6 +38,9 @@ const useArchiveRecommend = () => {
     mutationFn: archiveRecommend,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [queryKeys.recommends] });
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.archivedRecommends],
+      });
       toast.success("Recommendation archived successfully");
     },
     onError: (error) => {

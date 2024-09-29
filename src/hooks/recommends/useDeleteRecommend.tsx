@@ -34,6 +34,9 @@ const useDeleteRecommend = () => {
     mutationFn: deleteRecommend,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [queryKeys.recommends] });
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.archivedRecommends],
+      });
       toast.success("Recommendation deleted successfully");
     },
     onError: (error) => {
