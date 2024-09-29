@@ -14,15 +14,18 @@ import {
   TooltipTrigger,
 } from "@/components/ui/Tooltip/Tooltip";
 import { useModals } from "@/context/ModalsContext";
+import useUnarchiveRecommend from "@/hooks/recommends/useUnArchive";
 import { Recommend } from "@/types/globalTypes";
 
 const ArchivedCard = ({ recommend }: { recommend: Recommend }) => {
   const { openDeleteRecommend } = useModals();
 
-  // Placeholder for reactivating the recommendation
-  const onReactivate = () => {
-    // TODO: Implement reactivation logic here
-    console.log("Reactivating recommend with id:", recommend._id);
+  const unarchiveRecommend = useUnarchiveRecommend();
+
+  const onReactivate = async () => {
+    if (recommend?._id) {
+      unarchiveRecommend.mutate({ _id: recommend._id });
+    }
   };
 
   return (
