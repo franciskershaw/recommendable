@@ -29,7 +29,8 @@ const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
         </CardDescription>
       </CardHeader>
 
-      <CardFooter className="flex justify-around">
+      {/* Action Buttons */}
+      <CardFooter className="flex justify-center gap-8">
         <Tooltip>
           <TooltipTrigger asChild>
             <Button size="sm" variant="default">
