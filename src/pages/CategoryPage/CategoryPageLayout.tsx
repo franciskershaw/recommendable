@@ -3,21 +3,22 @@ import { FaPlus } from "react-icons/fa";
 import { Button } from "@/components/ui/Button/Button";
 import Heading from "@/components/ui/Heading/Heading";
 import { useModals } from "@/context/ModalsContext";
+import useRecommends from "@/hooks/recommends/useRecommends";
 import { Recommend, ValidCategory } from "@/types/globalTypes";
 
-import AddRecommendModal from "./AddRecommendModal";
-import RecommendCard from "./RecommendCard";
+import AddRecommendModal from "./components/AddRecommendModal";
+import RecommendCard from "./components/RecommendCard";
 
 const CategoryPageLayout = ({
   name,
-  recommends,
   category,
 }: {
   name: string;
-  recommends: Recommend[];
   category: ValidCategory;
 }) => {
   const { isAddRecommendModalOpen, openAddModal, closeAddModal } = useModals();
+
+  const { recommends } = useRecommends();
 
   return (
     <>
@@ -25,7 +26,7 @@ const CategoryPageLayout = ({
         {/* Header Section */}
         <div className="flex items-center gap-3">
           <Heading>{name}</Heading>
-          {recommends.length !== 0 && (
+          {recommends[category].length !== 0 && (
             <Button variant="outline" onClick={openAddModal}>
               <FaPlus />
             </Button>
@@ -33,9 +34,9 @@ const CategoryPageLayout = ({
         </div>
 
         {/* Content Section */}
-        {recommends.length > 0 ? (
+        {recommends[category].length > 0 ? (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {recommends.map((recommend) => (
+            {recommends[category].map((recommend: Recommend) => (
               <RecommendCard key={recommend._id} recommend={recommend} />
             ))}
           </div>
