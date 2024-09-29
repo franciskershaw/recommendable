@@ -11,6 +11,7 @@ import {
   FormMessage,
 } from "@/components/ui/Form/Form";
 import { Input } from "@/components/ui/Form/Input/Input";
+import { useModals } from "@/context/ModalsContext";
 import useAddRecommend from "@/hooks/recommends/useAddRecommend";
 import { ValidCategory } from "@/types/globalTypes";
 
@@ -23,26 +24,29 @@ const AddRecommendForm = ({
   category: ValidCategory;
   closeModal: () => void;
 }) => {
+  const { selectedRecommend } = useModals();
   const form = useForm({
     resolver: zodResolver(newRecommendSchema),
     defaultValues: {
-      name: "",
-      recommendedBy: "",
+      name: selectedRecommend?.name || "",
+      recommendedBy: selectedRecommend?.recommendedBy || "",
     },
   });
 
   const addRecommend = useAddRecommend();
 
   const onSubmit = (data: { name: string; recommendedBy: string }) => {
-    addRecommend.mutate(
-      { ...data, category },
-      {
-        onSuccess: () => {
-          form.reset();
-          closeModal();
-        },
-      }
-    );
+    if (!selectedRecommend) {
+      addRecommend.mutate(
+        { ...data, category },
+        {
+          onSuccess: () => {
+            form.reset();
+            closeModal();
+          },
+        }
+      );
+    }
   };
 
   return (

@@ -1,9 +1,8 @@
-import { useState } from "react";
-
 import { FaPlus } from "react-icons/fa";
 
 import { Button } from "@/components/ui/Button/Button";
 import Heading from "@/components/ui/Heading/Heading";
+import { useModals } from "@/context/ModalsContext";
 import { Recommend, ValidCategory } from "@/types/globalTypes";
 
 import AddRecommendModal from "./AddRecommendModal";
@@ -18,7 +17,7 @@ const CategoryPageLayout = ({
   recommends: Recommend[];
   category: ValidCategory;
 }) => {
-  const [openAddRecommendModal, setOpenAddRecommendModal] = useState(false);
+  const { isAddRecommendModalOpen, openAddModal, closeAddModal } = useModals();
 
   return (
     <>
@@ -27,10 +26,7 @@ const CategoryPageLayout = ({
         <div className="flex items-center gap-3">
           <Heading>{name}</Heading>
           {recommends.length !== 0 && (
-            <Button
-              variant="outline"
-              onClick={() => setOpenAddRecommendModal(true)}
-            >
+            <Button variant="outline" onClick={openAddModal}>
               <FaPlus />
             </Button>
           )}
@@ -50,7 +46,7 @@ const CategoryPageLayout = ({
             </p>
             <Button
               variant="default"
-              onClick={() => setOpenAddRecommendModal(true)}
+              onClick={openAddModal}
               className="flex items-center gap-2"
             >
               <FaPlus />
@@ -60,12 +56,12 @@ const CategoryPageLayout = ({
         )}
       </div>
 
-      {/* Add Recommend Modal */}
+      {/* Add/Edit Recommend Modal */}
       <AddRecommendModal
-        open={openAddRecommendModal}
-        onOpenChange={(open) => setOpenAddRecommendModal(open)}
+        open={isAddRecommendModalOpen}
+        onOpenChange={(open) => (open ? openAddModal() : closeAddModal())}
         category={category}
-        closeModal={() => setOpenAddRecommendModal(false)}
+        closeModal={closeAddModal}
       />
     </>
   );
