@@ -6,7 +6,7 @@ import { Recommend } from "@/types/globalTypes";
 
 import RecommendCard from "../RecommendCard/RecommendCard";
 
-const OpenRecommends = ({ recommends = [] }: { recommends: Recommend[] }) => {
+const OpenRecommends = ({ recommends }: { recommends: Recommend[] }) => {
   const { openAddRecommend } = useModals();
 
   return recommends.length > 0 ? (

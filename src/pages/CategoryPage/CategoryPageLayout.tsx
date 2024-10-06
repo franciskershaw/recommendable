@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 
+import { FaPlus } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
+import { Button } from "@/components/ui/Button/Button";
 import {
   Tabs,
   TabsContent,
@@ -52,10 +54,7 @@ const CategoryPageLayout = ({
       >
         <div className="space-y-4">
           <div className="flex items-center justify-between gap-3">
-            <CategoryHeading
-              name={name}
-              showButton={recommends[category].length !== 0}
-            />
+            <CategoryHeading name={name} />
             <TabsList className="ml-auto">
               <TabsTrigger value="open">Open</TabsTrigger>
               <TabsTrigger value="archived">Archived</TabsTrigger>
@@ -71,6 +70,14 @@ const CategoryPageLayout = ({
           </TabsContent>
         </div>
       </Tabs>
+
+      <Button
+        variant="outline"
+        onClick={() => openAddRecommend()}
+        className="fixed bottom-6 right-6 flex items-center gap-2"
+      >
+        <FaPlus />
+      </Button>
 
       <AddRecommendModal
         open={isRecommendModalOpen}
