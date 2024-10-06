@@ -49,17 +49,21 @@ const CategoryPageLayout = ({
       <Tabs
         value={activeTab}
         onValueChange={(value) => setActiveTab(value)}
-        className="w-full"
+        className="w-full h-screen flex flex-col"
       >
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
+        {/* Fixed Header Section */}
+        <div className="bg-white z-10 fixed top-0 left-0 right-0 px-4 py-3 shadow-md">
+          <div className="flex items-center gap-4">
             <CategoryHeading name={name} />
             <TabsList>
               <TabsTrigger value="open">Open</TabsTrigger>
               <TabsTrigger value="archived">Archived</TabsTrigger>
             </TabsList>
           </div>
+        </div>
 
+        {/* Scrollable Content Section */}
+        <div className="mt-12 flex-1 px-2 py-3 space-y-4">
           <TabsContent value="open">
             <OpenRecommendations recommends={recommends[category]} />
           </TabsContent>
@@ -70,6 +74,7 @@ const CategoryPageLayout = ({
         </div>
       </Tabs>
 
+      {/* Floating Add Button */}
       <button
         onClick={() => openAddRecommend()}
         className="rounded-full fixed bottom-4 right-4 bg-slate-700 p-3 text-white"
@@ -77,6 +82,7 @@ const CategoryPageLayout = ({
         <FaPlus size={20} />
       </button>
 
+      {/* Add Recommend Modal */}
       <AddRecommendModal
         open={isRecommendModalOpen}
         onOpenChange={(open) => (open ? openAddRecommend() : closeModal())}
@@ -84,6 +90,7 @@ const CategoryPageLayout = ({
         closeModal={closeModal}
       />
 
+      {/* Delete Recommend Modal */}
       <DeleteRecommendConfirmation
         open={isDeletionModalOpen}
         onOpenChange={(open) =>

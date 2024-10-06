@@ -1,4 +1,4 @@
-import { FaArchive, FaArrowsAlt, FaEdit, FaTrash } from "react-icons/fa";
+import { FaArchive, FaEdit, FaTrash } from "react-icons/fa";
 
 import { Button } from "@/components/ui/Button/Button";
 import {
@@ -30,7 +30,7 @@ const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
   return (
     <Card className="relative">
       {/* Drag Handle */}
-      <FaArrowsAlt className="absolute top-2 right-3 cursor-grab" size={24} />
+      {/* <FaArrowsAlt className="absolute top-2 right-3 cursor-grab" size={24} /> */}
 
       {/* Main Content */}
       <CardHeader className="pr-12 md:pr-10">

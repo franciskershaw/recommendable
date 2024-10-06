@@ -7,7 +7,7 @@ const HamburgerBars = ({
 }) => {
   return (
     <button
-      className={`fixed top-4 right-4 z-50 md:hidden transition-all duration-200`}
+      className={`fixed top-3 right-4 z-50 md:hidden transition-all duration-200`}
       onClick={toggleSidebar}
     >
       <div className="relative flex overflow-hidden items-center justify-center rounded-full w-10 h-10 transform transition-all bg-slate-700">
