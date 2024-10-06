@@ -53,9 +53,9 @@ const CategoryPageLayout = ({
         className="w-full"
       >
         <div className="space-y-4">
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
             <CategoryHeading name={name} />
-            <TabsList className="ml-auto">
+            <TabsList>
               <TabsTrigger value="open">Open</TabsTrigger>
               <TabsTrigger value="archived">Archived</TabsTrigger>
             </TabsList>
@@ -74,7 +74,7 @@ const CategoryPageLayout = ({
       <Button
         variant="outline"
         onClick={() => openAddRecommend()}
-        className="fixed bottom-6 right-6 flex items-center gap-2"
+        className="rounded-full fixed bottom-4 right-4"
       >
         <FaPlus />
       </Button>

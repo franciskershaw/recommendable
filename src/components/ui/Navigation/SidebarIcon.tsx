@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 const SidebarIcon = ({
   icon,
   label,
-  isExpanded,
+  isExpanded = true,
   to,
   onClick = () => {},
 }: {
   icon: React.ReactNode;
   label: string;
-  isExpanded: boolean;
+  isExpanded?: boolean;
   to?: string;
   onClick?: () => void;
 }) => {
