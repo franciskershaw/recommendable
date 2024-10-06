@@ -17,7 +17,7 @@ const OpenRecommends = ({ recommends }: { recommends: Recommend[] }) => {
     </div>
   ) : (
     <div className="flex flex-col items-center justify-center py-16">
-      <p className="text-lg text-muted-foreground mb-4">
+      <p className="text-lg text-muted-foreground mb-4 text-center">
         No recommendations yet. Start by adding a new one!
       </p>
       <Button

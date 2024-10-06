@@ -15,7 +15,7 @@ const ArchivedRecommends = ({
     </div>
   ) : (
     <div className="flex flex-col items-center justify-center py-16">
-      <p className="text-lg text-muted-foreground mb-4">
+      <p className="text-lg text-muted-foreground mb-4 text-center">
         Archived recommendations will show here
       </p>
     </div>
