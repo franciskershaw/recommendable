@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
-import { Button } from "@/components/ui/Button/Button";
 import {
   Tabs,
   TabsContent,
@@ -71,13 +70,12 @@ const CategoryPageLayout = ({
         </div>
       </Tabs>
 
-      <Button
-        variant="outline"
+      <button
         onClick={() => openAddRecommend()}
-        className="rounded-full fixed bottom-4 right-4"
+        className="rounded-full fixed bottom-4 right-4 bg-slate-700 p-3 text-white"
       >
-        <FaPlus />
-      </Button>
+        <FaPlus size={20} />
+      </button>
 
       <AddRecommendModal
         open={isRecommendModalOpen}
