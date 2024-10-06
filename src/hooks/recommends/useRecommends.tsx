@@ -24,25 +24,14 @@ const useRecommends = () => {
   const api = useAxios();
   const { user } = useUser();
 
-  const getRecommends = async () => {
+  const getRecommends = async (isArchived = false) => {
     if (!user?.accessToken) {
       throw new Error("User is not authenticated");
     }
 
     const res = await api.get("/recommends", {
       headers: { Authorization: `Bearer ${user.accessToken}` },
-    });
-
-    return res.data;
-  };
-
-  const getArchivedRecommends = async () => {
-    if (!user?.accessToken) {
-      throw new Error("User is not authenticated");
-    }
-
-    const res = await api.get("/recommends/archived", {
-      headers: { Authorization: `Bearer ${user.accessToken}` },
+      params: { isArchived },
     });
 
     return res.data;
@@ -50,12 +39,12 @@ const useRecommends = () => {
 
   const { data: recommends = emptyRecommends } = useQuery({
     queryKey: [queryKeys.recommends],
-    queryFn: getRecommends,
+    queryFn: () => getRecommends(false),
   });
 
   const { data: archivedRecommends = emptyRecommends } = useQuery({
     queryKey: [queryKeys.archivedRecommends],
-    queryFn: getArchivedRecommends,
+    queryFn: () => getRecommends(true),
   });
 
   return { recommends, archivedRecommends };

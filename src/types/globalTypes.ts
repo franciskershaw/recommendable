@@ -12,15 +12,7 @@ export interface Recommend {
   category: string;
   recommendedBy: string;
   recommendedAt: string;
-  archived: boolean;
-}
-
-export interface User {
-  _id: string;
-  name: string;
-  email: string;
-  recommends: Recommend[];
-  accessToken: string;
+  isArchived: boolean; // Changed to match backend (`isArchived`)
 }
 
 export type ValidCategory =
@@ -29,3 +21,13 @@ export type ValidCategory =
   | typeof CATEGORY_MUSIC
   | typeof CATEGORY_EVENTS
   | typeof CATEGORY_PLACES;
+
+export interface User {
+  _id: string;
+  name: string;
+  email: string;
+  recommends: {
+    [key in ValidCategory]: Recommend[];
+  };
+  accessToken: string;
+}
