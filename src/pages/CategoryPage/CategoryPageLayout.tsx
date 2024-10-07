@@ -14,6 +14,8 @@ import useRecommends from "@/hooks/recommends/useRecommends";
 import { ValidCategory } from "@/types/globalTypes";
 
 import AddRecommendModal from "./components/AddRecommendModal/AddRecommendModal";
+import BottomBar from "./components/BottomControls/BottomControls";
+import BottomControls from "./components/BottomControls/BottomControls";
 import CategoryHeading from "./components/CategoryHeading/CategoryHeading";
 import DeleteRecommendConfirmation from "./components/DeleteRecommendConfirmation/DeleteRecommendConfirmation";
 import ArchivedRecommends from "./components/Recommends/ArchivedRecommends";
@@ -63,7 +65,7 @@ const CategoryPageLayout = ({
         </div>
 
         {/* Scrollable Content Section */}
-        <div className="mt-12 flex-1 px-2 py-3 space-y-4">
+        <div className="border mt-12 flex-1 px-2 pt-3 space-y-4">
           <TabsContent value="open">
             <OpenRecommendations recommends={recommends[category]} />
           </TabsContent>
@@ -74,13 +76,7 @@ const CategoryPageLayout = ({
         </div>
       </Tabs>
 
-      {/* Floating Add Button */}
-      <button
-        onClick={() => openAddRecommend()}
-        className="rounded-full fixed bottom-4 right-4 bg-slate-700 p-3 text-white"
-      >
-        <FaPlus size={20} />
-      </button>
+      <BottomControls openAddRecommend={openAddRecommend} />
 
       {/* Add Recommend Modal */}
       <AddRecommendModal
