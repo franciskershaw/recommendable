@@ -36,7 +36,10 @@ const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
       <CardHeader className="pr-12 md:pr-10">
         <CardTitle>{recommend.name}</CardTitle>
         <CardDescription>
-          Recommended by {recommend.recommendedBy}
+          <p>Recommended by {recommend.recommendedBy}</p>
+          <p className="mt-1">
+            Added {new Date(recommend.createdAt).toLocaleDateString("en-GB")}
+          </p>
         </CardDescription>
       </CardHeader>
 

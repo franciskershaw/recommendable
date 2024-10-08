@@ -11,7 +11,7 @@ export interface Recommend {
   name: string;
   category: string;
   recommendedBy: string;
-  recommendedAt: string;
+  createdAt: string;
   isArchived: boolean; // Changed to match backend (`isArchived`)
 }
 
