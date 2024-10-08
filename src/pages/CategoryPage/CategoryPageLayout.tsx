@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaSearch, FaSort } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
 import {
@@ -14,6 +14,7 @@ import useRecommends from "@/hooks/recommends/useRecommends";
 import { ValidCategory } from "@/types/globalTypes";
 
 import AddRecommendModal from "./components/AddRecommendModal/AddRecommendModal";
+import BottomControlButton from "./components/BottomControls/BottomControlButton";
 import BottomControls from "./components/BottomControls/BottomControls";
 import CategoryHeading from "./components/CategoryHeading/CategoryHeading";
 import DeleteRecommendConfirmation from "./components/DeleteRecommendConfirmation/DeleteRecommendConfirmation";
@@ -76,12 +77,18 @@ const CategoryPageLayout = ({
       </Tabs>
 
       <BottomControls>
-        <button
-          onClick={() => openAddRecommend()}
-          className="rounded-full bg-slate-700 p-3 text-white flex items-center justify-center"
-        >
+        <div className="flex items-center gap-4">
+          <BottomControlButton>
+            <FaSearch size={20} />
+          </BottomControlButton>
+          <BottomControlButton>
+            <FaSort size={20} />
+          </BottomControlButton>
+        </div>
+
+        <BottomControlButton onClick={() => openAddRecommend()}>
           <FaPlus size={20} />
-        </button>
+        </BottomControlButton>
       </BottomControls>
 
       {/* Add Recommend Modal */}
