@@ -25,7 +25,7 @@ const SharedLayout = () => {
       <main
         className={`${
           isExpanded ? "md:ml-44" : "md:ml-20"
-        } p-4 transition-all duration-500`}
+        } px-4 transition-all duration-500`}
       >
         <Outlet />
       </main>

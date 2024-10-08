@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { FaPlus } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
 import {
@@ -14,7 +13,6 @@ import useRecommends from "@/hooks/recommends/useRecommends";
 import { ValidCategory } from "@/types/globalTypes";
 
 import AddRecommendModal from "./components/AddRecommendModal/AddRecommendModal";
-import BottomBar from "./components/BottomControls/BottomControls";
 import BottomControls from "./components/BottomControls/BottomControls";
 import CategoryHeading from "./components/CategoryHeading/CategoryHeading";
 import DeleteRecommendConfirmation from "./components/DeleteRecommendConfirmation/DeleteRecommendConfirmation";
@@ -65,7 +63,7 @@ const CategoryPageLayout = ({
         </div>
 
         {/* Scrollable Content Section */}
-        <div className="border mt-12 flex-1 px-2 pt-3 space-y-4">
+        <div className="mb-20 mt-16 flex-1 px-2 pt-3 space-y-4 overflow-y-auto">
           <TabsContent value="open">
             <OpenRecommendations recommends={recommends[category]} />
           </TabsContent>
