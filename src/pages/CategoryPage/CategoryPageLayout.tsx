@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { FaPlus } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
 import {
@@ -52,7 +53,7 @@ const CategoryPageLayout = ({
         className="w-full h-screen flex flex-col"
       >
         {/* Fixed Header Section */}
-        <div className="bg-white z-10 fixed top-0 left-0 right-0 px-4 py-3 shadow-md">
+        <div className="bg-white z-10 fixed top-0 left-0 right-0 p-4 shadow-md">
           <div className="flex items-center gap-4">
             <CategoryHeading name={name} />
             <TabsList>
@@ -74,7 +75,14 @@ const CategoryPageLayout = ({
         </div>
       </Tabs>
 
-      <BottomControls openAddRecommend={openAddRecommend} />
+      <BottomControls>
+        <button
+          onClick={() => openAddRecommend()}
+          className="rounded-full bg-slate-700 p-3 text-white flex items-center justify-center"
+        >
+          <FaPlus size={20} />
+        </button>
+      </BottomControls>
 
       {/* Add Recommend Modal */}
       <AddRecommendModal

@@ -23,11 +23,11 @@ const Heading = ({
   className = "",
 }: HeadingProps) => {
   const headingStyles = {
-    h1: "text-4xl",
-    h2: "text-3xl",
-    h3: "text-2xl",
-    h4: "text-xl",
-    h5: "text-lg",
+    h1: "text-3xl md:text-4xl",
+    h2: "text-2xl md:text-3xl",
+    h3: "text-xl md:text-2xl",
+    h4: "text-lg md:text-xl",
+    h5: "text-base md:text-lg",
     h6: "text-base",
   };
 
