@@ -1,6 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 import queryKeys from "@/tanstackQuery/queryKeys";
 import { User } from "@/types/globalTypes";
@@ -40,14 +41,19 @@ const useAxios = () => {
               accessToken: response.data.accessToken,
             };
           });
-          return api(originalRequest); // Retry the original request
+          return api(originalRequest);
         } catch {
+          toast.error("Session expired, please log in again.");
           queryClient.setQueryData([queryKeys.user], null);
           navigate("/");
-          return Promise.reject(error); // Reject the error if the refresh fails
+          return Promise.reject(error);
         }
       }
-      return Promise.reject(error); // Reject the error for other cases
+      toast.error(
+        error.response?.data?.message || "An error occurred. Please try again."
+      );
+
+      return Promise.reject(error);
     }
   );
 
