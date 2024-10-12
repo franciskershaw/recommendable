@@ -1,18 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { FaPlus, FaSort } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/Select/Select";
 import {
   Tabs,
   TabsContent,
@@ -30,6 +20,7 @@ import CategoryHeading from "./components/CategoryHeading/CategoryHeading";
 import DeleteRecommendConfirmation from "./components/DeleteRecommendConfirmation/DeleteRecommendConfirmation";
 import ArchivedRecommends from "./components/Recommends/ArchivedRecommends";
 import OpenRecommendations from "./components/Recommends/OpenRecommends";
+import SortBy from "./components/SortBy/SortBy";
 
 const CategoryPageLayout = ({
   name,
@@ -86,34 +77,9 @@ const CategoryPageLayout = ({
         </div>
       </Tabs>
 
+      {/* Bottom Controls Section on mobile */}
       <BottomControls>
-        <Select>
-          <SelectTrigger className="w-[160px]" chevron={<FaSort />}>
-            <SelectValue placeholder="Sort By" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>By Date</SelectLabel>
-              <SelectItem value="most-recent">Most Recent</SelectItem>
-              <SelectItem value="oldest">Oldest</SelectItem>
-              <SelectSeparator />
-            </SelectGroup>
-
-            <SelectGroup>
-              <SelectLabel>By Name</SelectLabel>
-              <SelectItem value="name-az">Name (A-Z)</SelectItem>
-              <SelectItem value="name-za">Name (Z-A)</SelectItem>
-              <SelectSeparator />
-            </SelectGroup>
-
-            <SelectGroup>
-              <SelectLabel>By Recommender</SelectLabel>
-              <SelectItem value="recommender-az">Recommender (A-Z)</SelectItem>
-              <SelectItem value="recommender-za">Recommender (Z-A)</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-
+        <SortBy />
         <BottomControlButton onClick={() => openAddRecommend()}>
           <FaPlus size={20} />
         </BottomControlButton>

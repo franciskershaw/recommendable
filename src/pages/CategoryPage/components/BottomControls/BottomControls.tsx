@@ -1,6 +1,6 @@
 const BottomBar = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-primary px-6 py-3 shadow-md flex items-center justify-between">
+    <div className="fixed md:hidden bottom-0 left-0 right-0 bg-white border-t border-primary px-6 py-3 shadow-md flex items-center justify-between">
       {children}
     </div>
   );
