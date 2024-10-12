@@ -58,7 +58,7 @@ const CategoryPageLayout = ({
         className="w-full h-screen flex flex-col"
       >
         {/* Fixed Header Section */}
-        <div className="bg-white z-10 fixed md:static top-0 left-0 right-0 p-4 md:border-none md:shadow-none shadow-md border">
+        <div className="bg-primary z-10 fixed md:static top-0 left-0 right-0 p-4 md:border-none md:shadow-none shadow-md border">
           <div className="flex items-center gap-4">
             <CategoryHeading name={name} />
             <TabsList>

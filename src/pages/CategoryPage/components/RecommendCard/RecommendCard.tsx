@@ -29,10 +29,6 @@ const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
 
   return (
     <Card className="relative">
-      {/* Drag Handle */}
-      {/* <FaArrowsAlt className="absolute top-2 right-3 cursor-grab" size={24} /> */}
-
-      {/* Main Content */}
       <CardHeader className="pr-12 md:pr-10">
         <CardTitle>{recommend.name}</CardTitle>
         <CardDescription className="flex flex-col space-y-1">

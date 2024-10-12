@@ -10,20 +10,20 @@ const HamburgerBars = ({
       className={`fixed top-3 right-4 z-50 md:hidden transition-all duration-200`}
       onClick={toggleSidebar}
     >
-      <div className="relative flex overflow-hidden items-center justify-center rounded-full w-12 h-12 transform transition-all bg-primary">
+      <div className="relative flex overflow-hidden items-center justify-center rounded-full w-12 h-12 transform transition-all bg-muted">
         <div className="flex flex-col justify-between w-5 h-5 transform transition-all duration-300 origin-center overflow-hidden">
           <div
-            className={`bg-white h-[2px] w-7 transform transition-all duration-300 origin-left ${
+            className={`bg-primary h-[2px] w-7 transform transition-all duration-300 origin-left ${
               isExpanded ? "translate-x-10" : ""
             }`}
           ></div>
           <div
-            className={`bg-white h-[2px] w-7 rounded transform transition-all duration-300 delay-75 ${
+            className={`bg-primary h-[2px] w-7 rounded transform transition-all duration-300 delay-75 ${
               isExpanded ? "translate-x-10" : ""
             }`}
           ></div>
           <div
-            className={`bg-white h-[2px] w-7 transform transition-all duration-300 origin-left delay-150 ${
+            className={`bg-primary h-[2px] w-7 transform transition-all duration-300 origin-left delay-150 ${
               isExpanded ? "translate-x-10" : ""
             }`}
           ></div>
@@ -34,12 +34,12 @@ const HamburgerBars = ({
             }`}
           >
             <div
-              className={`absolute bg-white h-[2px] w-5 transform transition-all duration-500 delay-300 ${
+              className={`absolute bg-primary h-[2px] w-5 transform transition-all duration-500 delay-300 ${
                 isExpanded ? "rotate-45" : "rotate-0"
               }`}
             ></div>
             <div
-              className={`absolute bg-white h-[2px] w-5 transform transition-all duration-500 delay-300 ${
+              className={`absolute bg-primary h-[2px] w-5 transform transition-all duration-500 delay-300 ${
                 isExpanded ? "-rotate-45" : "rotate-0"
               }`}
             ></div>
