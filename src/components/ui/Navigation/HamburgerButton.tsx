@@ -10,7 +10,7 @@ const HamburgerBars = ({
       className={`fixed top-3 right-4 z-50 md:hidden transition-all duration-200`}
       onClick={toggleSidebar}
     >
-      <div className="relative flex overflow-hidden items-center justify-center rounded-full w-12 h-12 transform transition-all bg-secondary">
+      <div className="relative flex overflow-hidden items-center justify-center rounded-full w-12 h-12 transform transition-all bg-secondary text-secondary-foreground">
         <div className="flex flex-col justify-between w-5 h-5 transform transition-all duration-300 origin-center overflow-hidden">
           <div
             className={`bg-primary h-[2px] w-7 transform transition-all duration-300 origin-left ${

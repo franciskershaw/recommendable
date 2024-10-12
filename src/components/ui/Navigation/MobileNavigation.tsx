@@ -31,7 +31,7 @@ const MobileNavigation = ({
       <HamburgerBars isExpanded={isExpanded} toggleSidebar={toggleSidebar} />
 
       <div
-        className={`fixed top-0 left-0 h-full w-full bg-primary transform ${
+        className={`fixed top-0 left-0 h-full w-full bg-primary text-primary-foreground transform ${
           isExpanded ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-500 ease-in-out z-40 md:hidden`}
       >

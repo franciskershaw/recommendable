@@ -71,7 +71,7 @@ const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
 
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button onClick={onArchive} size="sm" variant="outline">
+            <Button onClick={onArchive} size="sm" >
               <FaRegCircleCheck size={20} />
             </Button>
           </TooltipTrigger>
