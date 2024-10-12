@@ -5,6 +5,14 @@ import {
   CATEGORY_PLACES,
   CATEGORY_TV,
 } from "@/constants/categories";
+import {
+  SORT_MOST_RECENT,
+  SORT_NAME_AZ,
+  SORT_NAME_ZA,
+  SORT_OLDEST,
+  SORT_RECOMMENDER_AZ,
+  SORT_RECOMMENDER_ZA,
+} from "@/constants/preferences";
 
 export interface Recommend {
   _id: string;
@@ -12,7 +20,7 @@ export interface Recommend {
   category: string;
   recommendedBy: string;
   createdAt: string;
-  isArchived: boolean; // Changed to match backend (`isArchived`)
+  isArchived: boolean;
 }
 
 export type ValidCategory =
@@ -22,12 +30,24 @@ export type ValidCategory =
   | typeof CATEGORY_EVENTS
   | typeof CATEGORY_PLACES;
 
+// Add valid sort options
+export type SortOption =
+  | typeof SORT_MOST_RECENT
+  | typeof SORT_OLDEST
+  | typeof SORT_NAME_AZ
+  | typeof SORT_NAME_ZA
+  | typeof SORT_RECOMMENDER_AZ
+  | typeof SORT_RECOMMENDER_ZA;
+
 export interface User {
   _id: string;
   name: string;
   email: string;
   recommends: {
     [key in ValidCategory]: Recommend[];
+  };
+  sortPreferences: {
+    [key in ValidCategory]?: SortOption;
   };
   accessToken: string;
 }

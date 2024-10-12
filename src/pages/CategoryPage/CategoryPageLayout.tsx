@@ -8,8 +8,11 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/Tabs/Tabs";
+import { SORT_MOST_RECENT } from "@/constants/preferences";
 import { useModals } from "@/context/ModalsContext";
 import useRecommends from "@/hooks/recommends/useRecommends";
+import useUser from "@/hooks/user/useUser";
+import { sortRecommends } from "@/lib/utils";
 import { ValidCategory } from "@/types/globalTypes";
 
 import AddRecommendModal from "./components/AddRecommendModal/AddRecommendModal";
@@ -36,6 +39,7 @@ const CategoryPageLayout = ({
   } = useModals();
 
   const { recommends, archivedRecommends } = useRecommends();
+  const sortPreference = useUser()?.user?.sortPreferences?.[category];
   const location = useLocation();
 
   const [activeTab, setActiveTab] = useState<string>("open");
@@ -65,7 +69,12 @@ const CategoryPageLayout = ({
         {/* Scrollable Content Section */}
         <div className="mb-24 mt-16 flex-1 px-2 pt-5 space-y-4 overflow-y-auto">
           <TabsContent value="open">
-            <OpenRecommendations recommends={recommends[category]} />
+            <OpenRecommendations
+              recommends={sortRecommends(
+                recommends[category],
+                sortPreference || SORT_MOST_RECENT
+              )}
+            />
           </TabsContent>
 
           <TabsContent value="archived">
