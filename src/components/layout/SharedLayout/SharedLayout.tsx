@@ -2,17 +2,24 @@ import { useState } from "react";
 
 import { Outlet } from "react-router-dom";
 
+import Loading from "@/components/ui/Loading/Loading";
 import MobileNavigation from "@/components/ui/Navigation/MobileNavigation";
 import { Toaster } from "@/components/ui/Toaster/Toaster";
+import useUser from "@/hooks/user/useUser";
 
 import Sidebar from "../../ui/Navigation/Sidebar";
 
 const SharedLayout = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { fetchingUser } = useUser();
 
   const toggleSidebar = () => {
     setIsExpanded((prev) => !prev);
   };
+
+  if (fetchingUser) {
+    return <Loading />;
+  }
 
   return (
     <div className="relative min-h-screen">
@@ -33,4 +40,5 @@ const SharedLayout = () => {
     </div>
   );
 };
+
 export default SharedLayout;

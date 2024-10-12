@@ -24,6 +24,8 @@ const useUser = () => {
   const { data: user, isFetching: fetchingUser } = useQuery<User | null>({
     queryKey: [queryKeys.user],
     queryFn: getUser,
+    retry: false, // Don't retry if fetching the user fails
+    staleTime: 1000 * 60 * 5, // Optional: avoid refetching too frequently
   });
 
   function updateUser(newUser: User) {

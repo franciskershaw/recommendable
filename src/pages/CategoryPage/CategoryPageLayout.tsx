@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { useLocation } from "react-router-dom";
 
+import Loading from "@/components/ui/Loading/Loading";
 import {
   Tabs,
   TabsContent,
@@ -39,7 +40,8 @@ const CategoryPageLayout = ({
     selectedRecommend,
   } = useModals();
 
-  const { recommends, archivedRecommends } = useRecommends();
+  const { recommends, archivedRecommends, fetchingRecommends } =
+    useRecommends();
   const sortPreference = useUser()?.user?.sortPreferences?.[category];
   const location = useLocation();
 
@@ -48,6 +50,10 @@ const CategoryPageLayout = ({
   useEffect(() => {
     setActiveTab("open");
   }, [location]);
+
+  if (fetchingRecommends) {
+    return <Loading />;
+  }
 
   return (
     <>

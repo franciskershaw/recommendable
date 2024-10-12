@@ -22,7 +22,7 @@ const emptyRecommends = {
 
 const useRecommends = () => {
   const api = useAxios();
-  const { user } = useUser();
+  const { user, fetchingUser } = useUser();
 
   const getRecommends = async (isArchived = false) => {
     if (!user?.accessToken) {
@@ -37,17 +37,28 @@ const useRecommends = () => {
     return res.data;
   };
 
-  const { data: recommends = emptyRecommends } = useQuery({
-    queryKey: [queryKeys.recommends],
-    queryFn: () => getRecommends(false),
-  });
+  const { data: recommends = emptyRecommends, isFetching: fetchingRecommends } =
+    useQuery({
+      queryKey: [queryKeys.recommends],
+      queryFn: () => getRecommends(false),
+      enabled: !!user?.accessToken && !fetchingUser,
+    });
 
-  const { data: archivedRecommends = emptyRecommends } = useQuery({
+  const {
+    data: archivedRecommends = emptyRecommends,
+    isFetching: fetchingArchivedRecommends,
+  } = useQuery({
     queryKey: [queryKeys.archivedRecommends],
     queryFn: () => getRecommends(true),
+    enabled: !!user?.accessToken && !fetchingUser,
   });
 
-  return { recommends, archivedRecommends };
+  return {
+    recommends,
+    archivedRecommends,
+    fetchingRecommends,
+    fetchingArchivedRecommends,
+  };
 };
 
 export default useRecommends;
