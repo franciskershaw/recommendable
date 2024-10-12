@@ -44,10 +44,11 @@ const useUpdateSort = () => {
           ...old,
           sortPreferences: {
             ...old.sortPreferences,
-            ...newData,
+            ...newData.sortPreferences,
           },
         };
       });
+
       return { previousData };
     },
     onSuccess: () => {
