@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { FaPlus } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
 import {
@@ -14,13 +13,11 @@ import useRecommends from "@/hooks/recommends/useRecommends";
 import { ValidCategory } from "@/types/globalTypes";
 
 import AddRecommendModal from "./components/AddRecommendModal/AddRecommendModal";
-import BottomControlButton from "./components/BottomControls/BottomControlButton";
 import BottomControls from "./components/BottomControls/BottomControls";
 import CategoryHeading from "./components/CategoryHeading/CategoryHeading";
 import DeleteRecommendConfirmation from "./components/DeleteRecommendConfirmation/DeleteRecommendConfirmation";
 import ArchivedRecommends from "./components/Recommends/ArchivedRecommends";
 import OpenRecommendations from "./components/Recommends/OpenRecommends";
-import SortBy from "./components/SortBy/SortBy";
 
 const CategoryPageLayout = ({
   name,
@@ -78,12 +75,7 @@ const CategoryPageLayout = ({
       </Tabs>
 
       {/* Bottom Controls Section on mobile */}
-      <BottomControls>
-        <SortBy />
-        <BottomControlButton onClick={() => openAddRecommend()}>
-          <FaPlus size={20} />
-        </BottomControlButton>
-      </BottomControls>
+      <BottomControls />
 
       {/* Add Recommend Modal */}
       <AddRecommendModal
