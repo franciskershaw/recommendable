@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { FaPlus, FaSearch, FaSort } from "react-icons/fa";
+import { FaPlus, FaSort } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
 import {
@@ -77,14 +77,9 @@ const CategoryPageLayout = ({
       </Tabs>
 
       <BottomControls>
-        <div className="flex items-center gap-4">
-          <BottomControlButton>
-            <FaSearch size={20} />
-          </BottomControlButton>
-          <BottomControlButton>
-            <FaSort size={20} />
-          </BottomControlButton>
-        </div>
+        <BottomControlButton>
+          <FaSort size={20} />
+        </BottomControlButton>
 
         <BottomControlButton onClick={() => openAddRecommend()}>
           <FaPlus size={20} />

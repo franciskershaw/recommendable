@@ -32,7 +32,7 @@ const Sidebar = ({
     <div
       className={`${
         isExpanded ? "w-44" : "w-20"
-      } h-full bg-slate-700 fixed left-0 top-0 flex flex-col justify-between py-8 transition-all duration-500 z-50`}
+      } h-full bg-primary fixed left-0 top-0 flex flex-col justify-between py-8 transition-all duration-500 z-50`}
     >
       <div className="flex flex-col items-center space-y-12 justify-center">
         <SidebarIcon
