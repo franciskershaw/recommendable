@@ -1,4 +1,5 @@
-import { FaArchive, FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaRegCircleCheck } from "react-icons/fa6";
 
 import { Button } from "@/components/ui/Button/Button";
 import {
@@ -70,8 +71,8 @@ const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
 
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button onClick={onArchive} size="sm" variant="default">
-              <FaArchive size={16} />
+            <Button onClick={onArchive} size="sm" variant="outline">
+              <FaRegCircleCheck size={20} />
             </Button>
           </TooltipTrigger>
           <TooltipContent>Archive</TooltipContent>
