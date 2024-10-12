@@ -21,6 +21,7 @@ import CategoryHeading from "./components/CategoryHeading/CategoryHeading";
 import DeleteRecommendConfirmation from "./components/DeleteRecommendConfirmation/DeleteRecommendConfirmation";
 import ArchivedRecommends from "./components/Recommends/ArchivedRecommends";
 import OpenRecommendations from "./components/Recommends/OpenRecommends";
+import SortBy from "./components/SortBy/SortBy";
 
 const CategoryPageLayout = ({
   name,
@@ -56,18 +57,21 @@ const CategoryPageLayout = ({
         className="w-full h-screen flex flex-col"
       >
         {/* Fixed Header Section */}
-        <div className="bg-white z-10 fixed top-0 left-0 right-0 p-4 shadow-md">
+        <div className="bg-white z-10 fixed md:static top-0 left-0 right-0 p-4 md:border-none md:shadow-none shadow-md border">
           <div className="flex items-center gap-4">
             <CategoryHeading name={name} />
             <TabsList>
               <TabsTrigger value="open">Open</TabsTrigger>
               <TabsTrigger value="archived">Archived</TabsTrigger>
             </TabsList>
+            <div className="hidden md:block">
+              <SortBy category={category} />
+            </div>
           </div>
         </div>
 
         {/* Scrollable Content Section */}
-        <div className="mb-24 mt-16 flex-1 px-2 pt-5 space-y-4 overflow-y-auto">
+        <div className="mb-24 mt-16 md:mt-0 flex-1 px-2 pt-5 md:pt-0 space-y-4 overflow-y-auto">
           <TabsContent value="open">
             <OpenRecommendations
               recommends={sortRecommends(
