@@ -32,7 +32,7 @@ const SortBy = ({ category }: { category: ValidCategory }) => {
 
   return (
     <Select onValueChange={handleChangeSort} value={sortPreference}>
-      <SelectTrigger className="w-[160px]" chevron={<FaSort />}>
+      <SelectTrigger className="w-[180px]" chevron={<FaSort />}>
         <SelectValue placeholder="Sort By" />
       </SelectTrigger>
       <SelectContent>

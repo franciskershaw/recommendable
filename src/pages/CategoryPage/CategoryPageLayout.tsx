@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { useLocation } from "react-router-dom";
 
-import { Button } from "@/components/ui/Button/Button";
 import {
   Tabs,
   TabsContent,
@@ -74,7 +73,7 @@ const CategoryPageLayout = ({
         </div>
 
         {/* Scrollable Content Section */}
-        <div className="mb-24 mt-16 md:mt-0 flex-1 px-2 pt-5 md:pt-0 space-y-4 overflow-y-auto">
+        <div className="mb-24 mt-16 md:mt-0 md:mb-8 flex-1 px-2 pt-5 md:pt-0 space-y-4 overflow-y-auto">
           <TabsContent value="open">
             <OpenRecommendations
               recommends={sortRecommends(
@@ -97,7 +96,7 @@ const CategoryPageLayout = ({
       {/* Add Recommend Button for desktop */}
       <button
         onClick={() => openAddRecommend()}
-        className="absolute bottom-4 right-4 p-4 md:block hidden rounded-full border border-secondary-foreground bg-secondary text-secondary-foreground shadow-md"
+        className="absolute bottom-4 right-4 p-4 hidden md:block rounded-full border border-secondary-foreground bg-secondary text-secondary-foreground shadow-md"
       >
         <FaPlus size={24} />
       </button>

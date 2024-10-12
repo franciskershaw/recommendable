@@ -53,7 +53,6 @@ const useUpdateSort = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [queryKeys.user] });
-      toast.success("Sort preference updated successfully");
     },
     onError: (error, _, context) => {
       queryClient.setQueryData([queryKeys.user], context?.previousData);

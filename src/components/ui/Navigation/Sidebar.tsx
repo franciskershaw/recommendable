@@ -84,7 +84,7 @@ const Sidebar = ({
       </div>
 
       <button
-        className={`absolute bottom-4 right-[-15px] transform bg-gray-600 p-2 rounded-full focus:outline-none transition-transform duration-500`}
+        className={`absolute bottom-4 right-[-15px] transform bg-secondary text-secondary-foreground p-2 rounded-full focus:outline-none transition-transform duration-500`}
         onClick={toggleSidebar}
       >
         {isExpanded ? (
