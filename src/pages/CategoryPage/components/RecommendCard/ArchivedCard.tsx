@@ -46,7 +46,7 @@ const ArchivedCard = ({ recommend }: { recommend: Recommend }) => {
               <Button
                 onClick={() => openDeleteRecommend(recommend)}
                 size="sm"
-                variant="destructive"
+                variant="outline"
               >
                 <FaTrash size={16} />
               </Button>
@@ -57,7 +57,7 @@ const ArchivedCard = ({ recommend }: { recommend: Recommend }) => {
 
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button onClick={onReactivate} size="sm" variant="default">
+            <Button onClick={onReactivate} size="sm" variant="outline">
               <FaRedo size={16} />
             </Button>
           </TooltipTrigger>

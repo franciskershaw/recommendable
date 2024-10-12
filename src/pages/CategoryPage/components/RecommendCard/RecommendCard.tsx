@@ -48,7 +48,7 @@ const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
               <Button
                 onClick={() => openDeleteRecommend(recommend)}
                 size="sm"
-                variant="destructive"
+                variant="outline"
               >
                 <FaTrash size={16} />
               </Button>
@@ -71,7 +71,7 @@ const RecommendCard = ({ recommend }: { recommend: Recommend }) => {
 
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button onClick={onArchive} size="sm" >
+            <Button onClick={onArchive} size="sm" variant="outline">
               <FaRegCircleCheck size={20} />
             </Button>
           </TooltipTrigger>
