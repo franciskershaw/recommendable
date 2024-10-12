@@ -4,6 +4,16 @@ import { FaPlus, FaSort } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
 import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/Select/Select";
+import {
   Tabs,
   TabsContent,
   TabsList,
@@ -65,7 +75,7 @@ const CategoryPageLayout = ({
         </div>
 
         {/* Scrollable Content Section */}
-        <div className="mb-20 mt-16 flex-1 px-2 pt-3 space-y-4 overflow-y-auto">
+        <div className="mb-24 mt-16 flex-1 px-2 pt-5 space-y-4 overflow-y-auto">
           <TabsContent value="open">
             <OpenRecommendations recommends={recommends[category]} />
           </TabsContent>
@@ -77,9 +87,32 @@ const CategoryPageLayout = ({
       </Tabs>
 
       <BottomControls>
-        <BottomControlButton>
-          <FaSort size={20} />
-        </BottomControlButton>
+        <Select>
+          <SelectTrigger className="w-[160px]" chevron={<FaSort />}>
+            <SelectValue placeholder="Sort By" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>By Date</SelectLabel>
+              <SelectItem value="most-recent">Most Recent</SelectItem>
+              <SelectItem value="oldest">Oldest</SelectItem>
+              <SelectSeparator />
+            </SelectGroup>
+
+            <SelectGroup>
+              <SelectLabel>By Name</SelectLabel>
+              <SelectItem value="name-az">Name (A-Z)</SelectItem>
+              <SelectItem value="name-za">Name (Z-A)</SelectItem>
+              <SelectSeparator />
+            </SelectGroup>
+
+            <SelectGroup>
+              <SelectLabel>By Recommender</SelectLabel>
+              <SelectItem value="recommender-az">Recommender (A-Z)</SelectItem>
+              <SelectItem value="recommender-za">Recommender (Z-A)</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
 
         <BottomControlButton onClick={() => openAddRecommend()}>
           <FaPlus size={20} />
