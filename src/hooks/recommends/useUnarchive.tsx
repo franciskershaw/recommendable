@@ -12,26 +12,21 @@ const useUnarchiveRecommend = () => {
   const { user } = useUser();
 
   const unarchiveRecommend = async (data: { _id: string }) => {
-    try {
-      if (!user?.accessToken) {
-        throw new Error("User is not authenticated");
-      }
-
-      const { _id } = data;
-
-      return await api.put(
-        `/recommends/${_id}/unarchive`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        }
-      );
-    } catch (error) {
-      toast.error("Failed to reactivate recommendation");
-      console.error("Error reactivating recommendation:", error);
+    if (!user?.accessToken) {
+      throw new Error("User is not authenticated");
     }
+
+    const { _id } = data;
+
+    return await api.put(
+      `/recommends/${_id}/unarchive`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      }
+    );
   };
 
   return useMutation({
@@ -44,7 +39,7 @@ const useUnarchiveRecommend = () => {
       toast.success("Recommendation reactivated successfully");
     },
     onError: (error) => {
-      console.error("Error reactivating recommendation:", error);
+      toast.error(error.message);
     },
   });
 };

@@ -19,20 +19,15 @@ const useUpdateSort = () => {
   const updateSortPreference = async (data: {
     sortPreferences: PartialSortPreferences;
   }) => {
-    try {
-      if (!user?.accessToken) {
-        throw new Error("User is not authenticated");
-      }
-
-      return await api.patch("/users/preferences", data, {
-        headers: {
-          Authorization: `Bearer ${user.accessToken}`,
-        },
-      });
-    } catch (error) {
-      toast.error("Failed to update sort preference");
-      console.error("Error updating sort preference:", error);
+    if (!user?.accessToken) {
+      throw new Error("User is not authenticated");
     }
+
+    return await api.patch("/users/preferences", data, {
+      headers: {
+        Authorization: `Bearer ${user.accessToken}`,
+      },
+    });
   };
 
   return useMutation({
@@ -61,8 +56,7 @@ const useUpdateSort = () => {
     },
     onError: (error, _, context) => {
       queryClient.setQueryData([queryKeys.user], context?.previousData);
-      toast.error("Failed to update sort preference");
-      console.error("Error updating sort preference:", error);
+      toast.error(error.message);
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: [queryKeys.user] });

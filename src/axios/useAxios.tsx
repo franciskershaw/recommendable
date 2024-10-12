@@ -40,12 +40,14 @@ const useAxios = () => {
               accessToken: response.data.accessToken,
             };
           });
-          return api(originalRequest);
+          return api(originalRequest); // Retry the original request
         } catch {
           queryClient.setQueryData([queryKeys.user], null);
           navigate("/");
+          return Promise.reject(error); // Reject the error if the refresh fails
         }
       }
+      return Promise.reject(error); // Reject the error for other cases
     }
   );
 

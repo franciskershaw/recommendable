@@ -18,22 +18,17 @@ const useEditRecommend = () => {
   const { user } = useUser();
 
   const editRecommend = async (data: EditRecommendData) => {
-    try {
-      if (!user?.accessToken) {
-        throw new Error("User is not authenticated");
-      }
-
-      const { _id, ...payload } = data;
-
-      return await api.put(`/recommends/${_id}`, payload, {
-        headers: {
-          Authorization: `Bearer ${user.accessToken}`,
-        },
-      });
-    } catch (error) {
-      toast.error("Failed to edit recommendation");
-      console.error("Error editing recommendation:", error);
+    if (!user?.accessToken) {
+      throw new Error("User is not authenticated");
     }
+
+    const { _id, ...payload } = data;
+
+    return await api.put(`/recommends/${_id}`, payload, {
+      headers: {
+        Authorization: `Bearer ${user.accessToken}`,
+      },
+    });
   };
 
   return useMutation({
@@ -43,7 +38,7 @@ const useEditRecommend = () => {
       toast.success("Recommendation edited successfully");
     },
     onError: (error) => {
-      console.error("Error editing recommendation:", error);
+      toast.error(error.message);
     },
   });
 };

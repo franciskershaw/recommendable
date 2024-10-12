@@ -12,26 +12,21 @@ const useArchiveRecommend = () => {
   const { user } = useUser();
 
   const archiveRecommend = async (data: { _id: string }) => {
-    try {
-      if (!user?.accessToken) {
-        throw new Error("User is not authenticated");
-      }
-
-      const { _id } = data;
-
-      return await api.put(
-        `/recommends/${_id}/archive`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        }
-      );
-    } catch (error) {
-      toast.error("Failed to archive recommendation");
-      console.error("Error archiving recommendation:", error);
+    if (!user?.accessToken) {
+      throw new Error("User is not authenticated");
     }
+
+    const { _id } = data;
+
+    return await api.put(
+      `/recommends/${_id}/archive`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      }
+    );
   };
 
   return useMutation({
@@ -44,7 +39,7 @@ const useArchiveRecommend = () => {
       toast.success("Recommendation archived successfully");
     },
     onError: (error) => {
-      console.error("Error archiving recommendation:", error);
+      toast.error(error.message);
     },
   });
 };

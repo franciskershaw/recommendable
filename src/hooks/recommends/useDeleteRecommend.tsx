@@ -12,22 +12,17 @@ const useDeleteRecommend = () => {
   const { user } = useUser();
 
   const deleteRecommend = async (data: { _id: string }) => {
-    try {
-      if (!user?.accessToken) {
-        throw new Error("User is not authenticated");
-      }
-
-      const { _id } = data;
-
-      return await api.delete(`/recommends/${_id}`, {
-        headers: {
-          Authorization: `Bearer ${user.accessToken}`,
-        },
-      });
-    } catch (error) {
-      toast.error("Failed to delete recommendation");
-      console.error("Error delete recommendation:", error);
+    if (!user?.accessToken) {
+      throw new Error("User is not authenticated");
     }
+
+    const { _id } = data;
+
+    return await api.delete(`/recommends/${_id}`, {
+      headers: {
+        Authorization: `Bearer ${user.accessToken}`,
+      },
+    });
   };
 
   return useMutation({
@@ -40,7 +35,7 @@ const useDeleteRecommend = () => {
       toast.success("Recommendation deleted successfully");
     },
     onError: (error) => {
-      console.error("Error deleting recommendation:", error);
+      toast.error(error.message);
     },
   });
 };

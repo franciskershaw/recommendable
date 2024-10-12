@@ -19,31 +19,27 @@ const useAddRecommend = () => {
   const { user } = useUser();
 
   const addRecommend = async (data: AddRecommendData) => {
-    try {
-      if (!user?.accessToken) {
-        throw new Error("User is not authenticated");
-      }
-
-      return api.post("/recommends", data, {
-        headers: {
-          Authorization: `Bearer ${user.accessToken}`,
-        },
-      });
-    } catch (error) {
-      toast.error("Failed to add recommendation");
-      console.error("Error adding recommendation:", error);
+    if (!user?.accessToken) {
+      throw new Error("User is not authenticated");
     }
+
+    return api.post("/recommendss", data, {
+      headers: {
+        Authorization: `Bearer ${user.accessToken}`,
+      },
+    });
   };
 
   // Create the mutation hook with appropriate types
   return useMutation({
     mutationFn: addRecommend,
     onSuccess: () => {
+      // Errors are not being picked up, and this runs.
       queryClient.invalidateQueries({ queryKey: [queryKeys.recommends] });
       toast.success("Recommendation added successfully");
     },
     onError: (error) => {
-      console.error("Error adding recommendation:", error);
+      toast.error(error.message);
     },
   });
 };
