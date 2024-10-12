@@ -87,11 +87,7 @@ const Sidebar = ({
         className={`absolute bottom-4 right-[-15px] transform bg-secondary text-secondary-foreground p-2 rounded-full focus:outline-none transition-transform duration-500`}
         onClick={toggleSidebar}
       >
-        {isExpanded ? (
-          <FaArrowLeft className="text-white" />
-        ) : (
-          <FaArrowRight className="text-white" />
-        )}
+        {isExpanded ? <FaArrowLeft /> : <FaArrowRight />}
       </button>
     </div>
   );
