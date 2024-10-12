@@ -11,13 +11,13 @@ import Sidebar from "../../ui/Navigation/Sidebar";
 
 const SharedLayout = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { fetchingUser } = useUser();
+  const { fetchingUser, user } = useUser();
 
   const toggleSidebar = () => {
     setIsExpanded((prev) => !prev);
   };
 
-  if (fetchingUser) {
+  if (!user && fetchingUser) {
     return <Loading />;
   }
 
