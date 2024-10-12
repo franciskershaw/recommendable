@@ -10,32 +10,44 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select/Select";
+import {
+  SORT_MOST_RECENT,
+  SORT_NAME_AZ,
+  SORT_NAME_ZA,
+  SORT_OLDEST,
+  SORT_RECOMMENDER_AZ,
+  SORT_RECOMMENDER_ZA,
+} from "@/constants/preferences";
+import useUser from "@/hooks/user/useUser";
+import { ValidCategory } from "@/types/globalTypes";
 
-const SortBy = () => {
+const SortBy = ({ category }: { category: ValidCategory }) => {
+  const sortPreference = useUser()?.user?.sortPreferences?.[category];
+
   return (
-    <Select>
+    <Select defaultValue={sortPreference}>
       <SelectTrigger className="w-[160px]" chevron={<FaSort />}>
         <SelectValue placeholder="Sort By" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
           <SelectLabel>By Date</SelectLabel>
-          <SelectItem value="most-recent">Most Recent</SelectItem>
-          <SelectItem value="oldest">Oldest</SelectItem>
+          <SelectItem value={SORT_MOST_RECENT}>Most Recent</SelectItem>
+          <SelectItem value={SORT_OLDEST}>Oldest</SelectItem>
           <SelectSeparator />
         </SelectGroup>
 
         <SelectGroup>
           <SelectLabel>By Name</SelectLabel>
-          <SelectItem value="name-az">Name (A-Z)</SelectItem>
-          <SelectItem value="name-za">Name (Z-A)</SelectItem>
+          <SelectItem value={SORT_NAME_AZ}>Name (A-Z)</SelectItem>
+          <SelectItem value={SORT_NAME_ZA}>Name (Z-A)</SelectItem>
           <SelectSeparator />
         </SelectGroup>
 
         <SelectGroup>
           <SelectLabel>By Recommender</SelectLabel>
-          <SelectItem value="recommender-az">Recommender (A-Z)</SelectItem>
-          <SelectItem value="recommender-za">Recommender (Z-A)</SelectItem>
+          <SelectItem value={SORT_RECOMMENDER_AZ}>Recommender (A-Z)</SelectItem>
+          <SelectItem value={SORT_RECOMMENDER_ZA}>Recommender (Z-A)</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

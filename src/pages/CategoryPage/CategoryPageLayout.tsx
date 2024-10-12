@@ -84,7 +84,7 @@ const CategoryPageLayout = ({
       </Tabs>
 
       {/* Bottom Controls Section on mobile */}
-      <BottomControls />
+      <BottomControls category={category} />
 
       {/* Add Recommend Modal */}
       <AddRecommendModal
