@@ -43,16 +43,16 @@ const useAxios = () => {
           });
           return api(originalRequest);
         } catch {
-          toast.error("Session expired, please log in again.");
+          toast.info("Session expired, please log in again.");
           queryClient.setQueryData([queryKeys.user], null);
+          queryClient.removeQueries({ queryKey: [queryKeys.recommends] });
+          queryClient.removeQueries({
+            queryKey: [queryKeys.archivedRecommends],
+          });
           navigate("/");
           return Promise.reject(error);
         }
       }
-      toast.error(
-        error.response?.data?.message || "An error occurred. Please try again."
-      );
-
       return Promise.reject(error);
     }
   );
