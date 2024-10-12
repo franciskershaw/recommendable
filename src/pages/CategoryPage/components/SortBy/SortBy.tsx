@@ -18,14 +18,20 @@ import {
   SORT_RECOMMENDER_AZ,
   SORT_RECOMMENDER_ZA,
 } from "@/constants/preferences";
+import useUpdateSort from "@/hooks/user/useUpdateSort";
 import useUser from "@/hooks/user/useUser";
 import { ValidCategory } from "@/types/globalTypes";
 
 const SortBy = ({ category }: { category: ValidCategory }) => {
   const sortPreference = useUser()?.user?.sortPreferences?.[category];
+  const updateSort = useUpdateSort();
+
+  const handleChangeSort = (value: string) => {
+    updateSort.mutate({ sortPreferences: { [category]: value } });
+  };
 
   return (
-    <Select defaultValue={sortPreference}>
+    <Select onValueChange={handleChangeSort} defaultValue={sortPreference}>
       <SelectTrigger className="w-[160px]" chevron={<FaSort />}>
         <SelectValue placeholder="Sort By" />
       </SelectTrigger>
