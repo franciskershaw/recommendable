@@ -25,8 +25,12 @@ const Auth = () => {
   return (
     <div className="flex items-center justify-center h-screen rounded-md">
       <div className="flex flex-col items-center justify-center border rounded-sm p-8">
-        <Heading type="h1" fontWeight="font-semibold" className="mb-4">
-          Login to Recommendable
+        <Heading
+          type="h1"
+          fontWeight="font-semibold"
+          className="mb-4 text-center"
+        >
+          Recommendable
         </Heading>
 
         {/* Google Login Button */}

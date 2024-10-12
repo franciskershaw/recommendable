@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 interface HeadingProps {
   children: ReactNode;
-  type?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  type?: "h1" | "h2" | "h3" | "h4";
   fontWeight?:
     | "font-thin"
     | "font-extralight"
@@ -23,12 +23,10 @@ const Heading = ({
   className = "",
 }: HeadingProps) => {
   const headingStyles = {
-    h1: "text-3xl md:text-4xl",
-    h2: "text-2xl md:text-3xl",
-    h3: "text-xl md:text-2xl",
-    h4: "text-lg md:text-xl",
-    h5: "text-base md:text-lg",
-    h6: "text-base",
+    h1: "text-2xl md:text-3xl",
+    h2: "text-xl md:text-2xl",
+    h3: "text-lg md:text-xl",
+    h4: "text-base md:text-lg",
   };
 
   const Tag = type;
