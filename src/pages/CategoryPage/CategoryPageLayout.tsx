@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { FaPlus } from "react-icons/fa6";
 import { useLocation } from "react-router-dom";
@@ -44,12 +44,30 @@ const CategoryPageLayout = ({
     useRecommends();
   const sortPreference = useUser()?.user?.sortPreferences?.[category];
   const location = useLocation();
-
+  const scrollableRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState<string>("open");
+  const [isAtBottom, setIsAtBottom] = useState(false);
 
   useEffect(() => {
     setActiveTab("open");
   }, [location]);
+
+  useEffect(() => {
+    const scrollableDiv = scrollableRef.current;
+    const handleScroll = () => {
+      if (!scrollableDiv) return;
+
+      const isBottomReached =
+        scrollableDiv.scrollHeight - scrollableDiv.scrollTop <=
+        scrollableDiv.clientHeight;
+      setIsAtBottom(isBottomReached);
+    };
+
+    scrollableDiv?.addEventListener("scroll", handleScroll);
+    return () => {
+      scrollableDiv?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -73,7 +91,10 @@ const CategoryPageLayout = ({
         </div>
 
         {/* Scrollable Content Section */}
-        <div className="mb-24 mt-16 md:mt-0 md:mb-8 flex-1 px-2 pt-5 md:pt-0 space-y-4 overflow-y-auto">
+        <div
+          ref={scrollableRef}
+          className="relative mb-12 mt-16 md:mt-0 md:mb-0 flex-1 px-2 pt-5 md:pt-0 space-y-4 overflow-y-auto"
+        >
           <TabsContent value="open">
             <OpenRecommendations
               recommends={sortRecommends(
@@ -87,6 +108,14 @@ const CategoryPageLayout = ({
           <TabsContent value="archived">
             <ArchivedRecommends recommends={archivedRecommends[category]} />
           </TabsContent>
+
+          {/* Sticky fade gradient */}
+          <div
+            className={`sticky bottom-6 md:bottom-0 h-10 bg-gradient-to-b from-transparent to-white pointer-events-none transition-opacity duration-300 ${
+              isAtBottom ? "opacity-0" : "opacity-100"
+            }`}
+            aria-hidden="true"
+          ></div>
         </div>
       </Tabs>
 
