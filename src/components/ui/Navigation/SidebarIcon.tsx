@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const SidebarIcon = ({
   icon,
@@ -14,20 +14,28 @@ const SidebarIcon = ({
   onClick?: () => void;
 }) => {
   const Wrapper = to ? Link : "button";
+  const active = useLocation().pathname === to;
+
   return (
     <Wrapper
       to={to || ""}
       onClick={onClick}
       className="flex items-center w-full"
     >
-      <span className="flex-shrink-0 w-20 flex justify-center text-white text-xl">
+      <span
+        className={`flex-shrink-0 w-20 flex justify-center text-xl transition-colors duration-300 ${
+          active ? "text-primary-bright" : "text-primary-foreground"
+        }`}
+      >
         {icon}
       </span>
 
       <span
         className={`${
           isExpanded ? "opacity-100" : "opacity-0"
-        } text-white whitespace-nowrap transition-opacity duration-300`}
+        } whitespace-nowrap transition-all duration-300 ${
+          active ? "text-white font-bold" : "text-white"
+        }`}
         style={{ width: isExpanded ? "auto" : "0px" }}
       >
         {label}
