@@ -1,7 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-
 import { FaPlus } from "react-icons/fa6";
-import { useLocation } from "react-router-dom";
 
 import {
   Tabs,
@@ -11,8 +8,6 @@ import {
 } from "@/components/ui/Tabs/Tabs";
 import { SORT_MOST_RECENT } from "@/constants/preferences";
 import { useModals } from "@/context/ModalsContext";
-import useRecommends from "@/hooks/recommends/useRecommends";
-import useUser from "@/hooks/user/useUser";
 import { sortRecommends } from "@/lib/utils";
 import { ValidCategory } from "@/types/globalTypes";
 
@@ -23,6 +18,7 @@ import DeleteRecommendConfirmation from "./components/DeleteRecommendConfirmatio
 import ArchivedRecommends from "./components/Recommends/ArchivedRecommends";
 import OpenRecommendations from "./components/Recommends/OpenRecommends";
 import SortBy from "./components/SortBy/SortBy";
+import useCategoryPageLayout from "./hooks/useCategoryPageLayout";
 
 const CategoryPageLayout = ({
   name,
@@ -32,6 +28,18 @@ const CategoryPageLayout = ({
   category: ValidCategory;
 }) => {
   const {
+    activeTab,
+    setActiveTab,
+    scrollableRef,
+    recommends,
+    sortPreference,
+    fetchingRecommends,
+    archivedRecommends,
+    isScrollable,
+    isAtBottom,
+  } = useCategoryPageLayout(category);
+
+  const {
     openAddRecommend,
     openDeleteRecommend,
     closeModal,
@@ -39,48 +47,6 @@ const CategoryPageLayout = ({
     isDeletionModalOpen,
     selectedRecommend,
   } = useModals();
-
-  const { recommends, archivedRecommends, fetchingRecommends } =
-    useRecommends();
-  const sortPreference = useUser()?.user?.sortPreferences?.[category];
-  const location = useLocation();
-  const scrollableRef = useRef<HTMLDivElement>(null);
-  const [activeTab, setActiveTab] = useState<string>("open");
-  const [isAtBottom, setIsAtBottom] = useState(false);
-  const [isScrollable, setIsScrollable] = useState(false); // New state for scrollability
-
-  useEffect(() => {
-    setActiveTab("open");
-  }, [location]);
-
-  useEffect(() => {
-    const scrollableDiv = scrollableRef.current;
-
-    const checkScrollable = () => {
-      if (scrollableDiv) {
-        const isOverflowing =
-          scrollableDiv.scrollHeight > scrollableDiv.clientHeight;
-        setIsScrollable(isOverflowing);
-      }
-    };
-
-    const handleScroll = () => {
-      if (!scrollableDiv) return;
-
-      const isBottomReached =
-        scrollableDiv.scrollHeight - scrollableDiv.scrollTop <=
-        scrollableDiv.clientHeight;
-      setIsAtBottom(isBottomReached);
-    };
-
-    scrollableDiv?.addEventListener("scroll", handleScroll);
-
-    checkScrollable();
-
-    return () => {
-      scrollableDiv?.removeEventListener("scroll", handleScroll);
-    };
-  }, [recommends, archivedRecommends]);
 
   return (
     <>
