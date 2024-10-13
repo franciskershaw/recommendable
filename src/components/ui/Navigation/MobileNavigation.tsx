@@ -1,6 +1,6 @@
 import {
   FaCalendar,
-  FaCog,
+  // FaCog,
   FaFilm,
   FaMusic,
   FaPlane,
@@ -69,14 +69,14 @@ const MobileNavigation = ({
             />
           </div>
 
-          <div className="flex flex-col gap-8">
-            <SidebarIcon icon={<FaCog />} label="Settings" to="/settings" />
-            <SidebarIcon
-              icon={<FaSignOutAlt />}
-              label="Log Out"
-              onClick={logout}
-            />
-          </div>
+          {/* <div className="flex flex-col gap-8"> */}
+          {/* <SidebarIcon icon={<FaCog />} label="Settings" to="/settings" /> */}
+          <SidebarIcon
+            icon={<FaSignOutAlt />}
+            label="Log Out"
+            onClick={logout}
+          />
+          {/* </div> */}
         </div>
       </div>
     </>
