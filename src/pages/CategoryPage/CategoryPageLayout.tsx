@@ -47,6 +47,7 @@ const CategoryPageLayout = ({
   const scrollableRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState<string>("open");
   const [isAtBottom, setIsAtBottom] = useState(false);
+  const [isScrollable, setIsScrollable] = useState(false); // New state for scrollability
 
   useEffect(() => {
     setActiveTab("open");
@@ -54,6 +55,15 @@ const CategoryPageLayout = ({
 
   useEffect(() => {
     const scrollableDiv = scrollableRef.current;
+
+    const checkScrollable = () => {
+      if (scrollableDiv) {
+        const isOverflowing =
+          scrollableDiv.scrollHeight > scrollableDiv.clientHeight;
+        setIsScrollable(isOverflowing);
+      }
+    };
+
     const handleScroll = () => {
       if (!scrollableDiv) return;
 
@@ -64,10 +74,13 @@ const CategoryPageLayout = ({
     };
 
     scrollableDiv?.addEventListener("scroll", handleScroll);
+
+    checkScrollable();
+
     return () => {
       scrollableDiv?.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [recommends, archivedRecommends]);
 
   return (
     <>
@@ -110,12 +123,14 @@ const CategoryPageLayout = ({
           </TabsContent>
 
           {/* Sticky fade gradient */}
-          <div
-            className={`sticky bottom-6 md:bottom-0 h-10 bg-gradient-to-b from-transparent to-white pointer-events-none transition-opacity duration-300 ${
-              isAtBottom ? "opacity-0" : "opacity-100"
-            }`}
-            aria-hidden="true"
-          ></div>
+          {isScrollable && (
+            <div
+              className={`sticky bottom-6 md:bottom-0 h-10 bg-gradient-to-b from-transparent to-white pointer-events-none transition-opacity duration-300 ${
+                isAtBottom ? "opacity-0" : "opacity-100"
+              }`}
+              aria-hidden="true"
+            ></div>
+          )}
         </div>
       </Tabs>
 
