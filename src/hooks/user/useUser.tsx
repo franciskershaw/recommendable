@@ -9,23 +9,27 @@ const useUser = () => {
   const queryClient = useQueryClient();
 
   const getUser = async (): Promise<User | null> => {
-    const response = await api.get("/auth/refresh-token");
-    if (response && response.status === 200) {
-      const user = await api.get("/users", {
-        headers: {
-          Authorization: `Bearer ${response.data.accessToken}`,
-          "Content-Type": "application/json",
-        },
-      });
-      return user.data;
-    } else return null;
+    try {
+      const response = await api.get("/auth/refresh-token");
+      if (response?.status === 200) {
+        const userResponse = await api.get("/users", {
+          headers: {
+            Authorization: `Bearer ${response.data.accessToken}`,
+          },
+        });
+        return userResponse.data;
+      }
+      return null;
+    } catch {
+      return null;
+    }
   };
 
   const { data: user, isFetching: fetchingUser } = useQuery<User | null>({
     queryKey: [queryKeys.user],
     queryFn: getUser,
-    retry: false, // Don't retry if fetching the user fails
-    staleTime: 1000 * 60 * 5, // Optional: avoid refetching too frequently
+    retry: false,
+    staleTime: 1000 * 60 * 5,
   });
 
   function updateUser(newUser: User) {
@@ -34,10 +38,8 @@ const useUser = () => {
 
   async function clearUser() {
     try {
-      const response = await api.post("/auth/logout");
+      await api.post("/auth/logout");
       queryClient.setQueryData([queryKeys.user], null);
-
-      return response.data;
     } catch (error) {
       console.log(error);
     }
