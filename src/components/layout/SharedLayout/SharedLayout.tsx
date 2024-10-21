@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 import Loading from "@/components/ui/Loading/Loading";
 import MobileNavigation from "@/components/ui/Navigation/MobileNavigation";
@@ -12,6 +12,8 @@ import Sidebar from "../../ui/Navigation/Sidebar";
 const SharedLayout = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { fetchingUser, user } = useUser();
+
+  const location = useLocation();
 
   const toggleSidebar = () => {
     setIsExpanded((prev) => !prev);
@@ -31,7 +33,7 @@ const SharedLayout = () => {
 
       <main
         className={`${
-          isExpanded ? "md:ml-44" : "md:ml-20"
+          isExpanded ? "md:ml-44" : location.pathname === "/" ? "" : "md:ml-20"
         } px-4 transition-all duration-500`}
       >
         <Outlet />
