@@ -11,22 +11,64 @@ import {
   FormLabel,
 } from "@/components/ui/Form/Form";
 import { Input } from "@/components/ui/Form/Input/Input";
+import useAuth from "@/hooks/auth/useAuth";
+
+type FormData = {
+  email: string;
+  password: string;
+  confirmPassword?: string;
+  name?: string;
+};
 
 const LocalForm = () => {
   const [isRegister, setIsRegister] = useState(false);
+
+  const { login, register } = useAuth();
+
   const form = useForm({
     defaultValues: {
       email: "",
       password: "",
       confirmPassword: "",
+      name: "",
     },
   });
 
   const toggleForm = () => setIsRegister(!isRegister);
 
+  const onSubmit = (data: FormData) => {
+    if (isRegister) {
+      register({
+        name: data.name ?? "",
+        email: data.email,
+        password: data.password,
+        confirmPassword: data.confirmPassword ?? "",
+      });
+    } else {
+      login({
+        email: data.email,
+        password: data.password,
+      });
+    }
+  };
+
   return (
-    <div className="space-y-6">
-      <Form {...form}>
+    <Form {...form}>
+      <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+        {isRegister && (
+          <FormField
+            name="name"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter your name" {...field} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+        )}
         <FormField
           name="email"
           control={form.control}
@@ -75,30 +117,36 @@ const LocalForm = () => {
             )}
           />
         )}
-      </Form>
 
-      <div className="text-sm text-gray-500 text-center">
-        {isRegister ? (
-          <>
-            Already have an account?{" "}
-            <span onClick={toggleForm} className="text-blue-500 cursor-pointer">
-              Login
-            </span>
-          </>
-        ) : (
-          <>
-            Don't have an account?{" "}
-            <span onClick={toggleForm} className="text-blue-500 cursor-pointer">
-              Register
-            </span>
-          </>
-        )}
-      </div>
+        <div className="text-sm text-gray-500 text-center">
+          {isRegister ? (
+            <>
+              Already have an account?{" "}
+              <span
+                onClick={toggleForm}
+                className="text-blue-500 cursor-pointer"
+              >
+                Login
+              </span>
+            </>
+          ) : (
+            <>
+              Don't have an account?{" "}
+              <span
+                onClick={toggleForm}
+                className="text-blue-500 cursor-pointer"
+              >
+                Register
+              </span>
+            </>
+          )}
+        </div>
 
-      <Button className="w-full" disabled>
-        {isRegister ? "Register" : "Login"}
-      </Button>
-    </div>
+        <Button className="w-full" type="submit">
+          {isRegister ? "Register" : "Login"}
+        </Button>
+      </form>
+    </Form>
   );
 };
 
