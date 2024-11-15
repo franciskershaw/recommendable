@@ -6,6 +6,7 @@ import {
   FaPlane,
   FaSignOutAlt,
   FaTv,
+  FaUtensils,
 } from "react-icons/fa";
 
 import useAuth from "@/hooks/auth/useAuth";
@@ -66,6 +67,12 @@ const MobileNavigation = ({
               icon={<FaCalendar />}
               label="Events"
               to="/events"
+            />
+            <SidebarIcon
+              onClick={toggleSidebar}
+              icon={<FaUtensils />}
+              label="Eat & Drink"
+              to="/bars-restaurants"
             />
           </div>
 

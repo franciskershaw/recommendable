@@ -1,4 +1,5 @@
 import {
+  CATEGORY_BARS_RESTAURANTS,
   CATEGORY_EVENTS,
   CATEGORY_FILMS,
   CATEGORY_MUSIC,
@@ -28,7 +29,8 @@ export type ValidCategory =
   | typeof CATEGORY_TV
   | typeof CATEGORY_MUSIC
   | typeof CATEGORY_EVENTS
-  | typeof CATEGORY_PLACES;
+  | typeof CATEGORY_PLACES
+  | typeof CATEGORY_BARS_RESTAURANTS;
 
 // Add valid sort options
 export type SortOption =

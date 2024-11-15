@@ -4,3 +4,4 @@ export const CATEGORY_TV = "tv";
 export const CATEGORY_MUSIC = "music";
 export const CATEGORY_EVENTS = "events";
 export const CATEGORY_PLACES = "places";
+export const CATEGORY_BARS_RESTAURANTS = "bars-restaurants";

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import useAxios from "@/axios/useAxios";
 import {
+  CATEGORY_BARS_RESTAURANTS,
   CATEGORY_EVENTS,
   CATEGORY_FILMS,
   CATEGORY_MUSIC,
@@ -18,6 +19,7 @@ const emptyRecommends = {
   [CATEGORY_MUSIC]: [],
   [CATEGORY_PLACES]: [],
   [CATEGORY_TV]: [],
+  [CATEGORY_BARS_RESTAURANTS]: [],
 };
 
 const useRecommends = () => {

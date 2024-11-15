@@ -19,6 +19,8 @@ export const sortRecommends = (
   recommends: Recommend[],
   sortPreference: SortOption
 ) => {
+  if (!Array.isArray(recommends)) return [];
+
   switch (sortPreference) {
     case SORT_MOST_RECENT:
       return [...recommends].sort(

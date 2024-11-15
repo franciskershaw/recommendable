@@ -8,6 +8,7 @@ import {
   FaPlane,
   FaSignOutAlt,
   FaTv,
+  FaUtensils,
 } from "react-icons/fa";
 
 import useAuth from "@/hooks/auth/useAuth";
@@ -31,7 +32,7 @@ const Sidebar = ({
   return (
     <div
       className={`${
-        isExpanded ? "w-44" : "w-20"
+        isExpanded ? "w-64" : "w-20"
       } h-full bg-primary text-primary-foreground fixed left-0 top-0 flex flex-col justify-between py-8 transition-all duration-500 z-50`}
     >
       <div className="flex flex-col items-center space-y-12 justify-center">
@@ -64,6 +65,12 @@ const Sidebar = ({
           label="Events"
           isExpanded={isExpanded}
           to="/events"
+        />
+        <SidebarIcon
+          icon={<FaUtensils />}
+          label="Eat & Drink"
+          isExpanded={isExpanded}
+          to="/bars-restaurants"
         />
       </div>
 

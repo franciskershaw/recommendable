@@ -33,7 +33,7 @@ const SharedLayout = () => {
 
       <main
         className={`${
-          isExpanded ? "md:ml-44" : location.pathname === "/" ? "" : "md:ml-20"
+          isExpanded ? "md:ml-64" : location.pathname === "/" ? "" : "md:ml-20"
         } px-4 transition-all duration-500`}
       >
         <Outlet />

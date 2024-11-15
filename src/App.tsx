@@ -5,6 +5,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import PrivateRoute from "./components/layout/PrivateRoute/PrivateRoute";
 import SharedLayout from "./components/layout/SharedLayout/SharedLayout";
 import {
+  CATEGORY_BARS_RESTAURANTS,
   CATEGORY_EVENTS,
   CATEGORY_FILMS,
   CATEGORY_MUSIC,
@@ -62,6 +63,17 @@ function App() {
                 <CategoryPageLayout
                   name={"Events"}
                   category={CATEGORY_EVENTS}
+                />
+              }
+            />
+          </Route>
+          <Route path="/bars-restaurants" element={<PrivateRoute />}>
+            <Route
+              path="/bars-restaurants"
+              element={
+                <CategoryPageLayout
+                  name={"Eat & Drink"}
+                  category={CATEGORY_BARS_RESTAURANTS}
                 />
               }
             />
